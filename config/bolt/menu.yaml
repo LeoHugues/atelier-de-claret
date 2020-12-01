@@ -2,26 +2,19 @@
 # details: https://docs.bolt.cm/configuration/menus
 
 main:
-  - label: Home
-    title: This is the <b>first<b> menu item.
+  - label: Accueil
+    title: "Page d'accueil"
     link: homepage
     class: homepage
-  - label: About
-    link: page/2
-    submenu:
-        - label: Sub 1
-          link: entry/39
-        - label: Sub 2
-          class: menu-item-class
-          link: entry/40
-        - link: entry/41 # These two have no `label`, so they will show up as the title
-        - class: sub-class
-          link: page/42
-  - label: All pages
-    link: pages/
-  - label: The Bolt site
-    link: https://boltcms.io
-    class: bolt-site
-    title: Visit the excellent Bolt website!
+  - label: Coworking
+    link: page/coworking
+  - label: Fablab
+    link: pages/fablab
+  - label: Formation
+    link: page/formation
+  - label: Adhésion
+    link: page/adhesion
+  - label: Contact
+    link: page/contact
 
 foo: bar

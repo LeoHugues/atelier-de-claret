@@ -3,7 +3,9 @@
     setcontent tag.. `ct.slug` is set to each of the (visible) contenttypes,
     and `latest limit 5` ensures we grab the 5 latest published records.
 #}
-<section class="section section-pages hero is-primary is-bold">
+     {% include 'partials/_index_footer_divider_top.twig' %}
+
+<section class="section section-pages hero is-primary">
     <div class="container">
         <div class="columns">
             {% for ct in config.get('contenttypes')|filter(ct => not ct.viewless and not ct.singleton) %}

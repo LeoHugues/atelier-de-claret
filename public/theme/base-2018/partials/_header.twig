@@ -2,7 +2,7 @@
 {% setcontent homepage = "homepage" limit 1 returnsingle %}
 <section class="hero hero-image is-primary is-bold is-medium {% if app.request.get('_route') == "homepage" %}is-large{% endif %}"
     {%- if homepage|image %}
-         data-background-image="{{ homepage|image.path }}" style="background-image: url({{ homepage|image.path }})"
+         data-background-image="{{ homepage.image }}" style="background-image: url({{ homepage.image }})"
     {% endif -%}
     >
     <div class="hero-body">
@@ -13,5 +13,6 @@
             {% endif %}
         </div>
     </div>
+     {% include 'partials/_header_divider_bottom.twig' %}
 </section>
 {% endif %}

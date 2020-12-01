@@ -1,19 +1,20 @@
 {% extends 'partials/_master.twig' %}
 
 {% block main %}
-
 <section class="section">
     <div class="container">
         <div class="columns">
             <div class="column is-two-thirds">
 
-                {# Remove this include if you don't need it anymore. #}
-                {{ include('partials/_fresh_install.twig') }}
-
                 {% setcontent homepage = "homepage" limit 1 returnsingle %}
                 {% if homepage %}
                 <div class="content">
-                    <h2 class="title is-size-1 is-size-3-mobile">{{ homepage.title }}</h2>
+                    
+                            <img class="logo column is-pulled-right is-3-desktop is-1-mobile is-0-tablet" src="{{ homepage.logo.path }}" alt="{{ homepage.logo.alt|default(homepage|title) }}"/>                    
+          
+                            <h2 class="title header is-size-1 is-size-3-mobile is-0-mobile">{{ homepage.title }}</h2>
+                    
+                    
                     <div class="teaser">{{ homepage.teaser }}</div>
                     {{ homepage.content }}
 
@@ -33,7 +34,9 @@
 
 {# Pages section #}
 
-<section class="section section-pages hero is-success is-bold">
+ {% include 'partials/_index_divider_top.twig' %}
+
+<section class="section section-pages hero is-success">
     <div class="container">
         <h2 class="title">Pages</h2>
         <div class="columns">
@@ -64,9 +67,12 @@
     </div>
 </section>
 
+ {% include 'partials/_pages_divider_bottom.twig' %}
+
 {# Latest entries #}
 
 <section class="section section-latest-entries">
+
     <div class="container">
         <h2 class="title">Latest Entries</h2>
         {% setcontent entries = 'entries' latest limit 3 %}

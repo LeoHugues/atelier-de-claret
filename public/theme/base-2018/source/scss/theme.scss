@@ -209,3 +209,106 @@ pre {
         font-size: 1em;
     }
 }
+
+// svg separator
+
+
+.custom-shape-divider-bottom-1606834316 {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1606834316 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 60px;
+}
+
+.custom-shape-divider-bottom-1606834316 .shape-fill {
+    fill: #72A1E5;
+}
+
+// Header divider
+
+.custom-shape-divider-bottom-1606835177 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1606835177 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 53px;
+}
+
+@include mobile {
+    .custom-shape-divider-bottom-1606835177 svg {
+        height: 25px;
+    }
+}
+
+.custom-shape-divider-bottom-1606835177 .shape-fill {
+    fill: #FFFFFF;
+}
+
+// Footer divider
+
+.custom-shape-divider-bottom-1606835898 {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1606835898 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 107px;
+}
+
+.custom-shape-divider-bottom-1606835898 .shape-fill {
+    fill: #694873;
+}
+
+// Pages divider bottom
+.custom-shape-divider-top-1606838621 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1606838621 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 67px;
+}
+
+.custom-shape-divider-top-1606838621 .shape-fill {
+    fill: #72A1E5;
+}
+
+@include desktop {
+
+    img.logo {
+        margin: 0 1.5em 1.5em 1.5em;
+    }
+}
