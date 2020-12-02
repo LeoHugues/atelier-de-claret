@@ -210,7 +210,12 @@ pre {
     }
 }
 
-// svg separator
+/**
+ *  Retouche perso 
+ */
+
+
+// Page section divider
 
 
 .custom-shape-divider-bottom-1606834316 {
@@ -306,17 +311,10 @@ pre {
     fill: #72A1E5;
 }
 
-@include desktop {
-
-    img.logo {
-        margin: 0 1.5em 1.5em 1.5em;
-    }
-}
-
 /**
  * Styles for 'responsive video embeds'
  */
- .embed-responsive {
+.embed-responsive {
     height: 0; 
     padding-top: 25px; 
     padding-bottom: 45%; 
@@ -326,27 +324,36 @@ pre {
     margin-bottom: 1.5em;
     position: relative; 
     overflow: hidden;
-  }
-  .embed-responsive.vimeo {
+}
+.embed-responsive.vimeo {
     padding-top: 0;
-  }
-  .embed-responsive.widescreen {
+}
+
+.embed-responsive.widescreen {
     padding-bottom: 57.25%;
-  }
-  .embed-responsive embed, .embed-responsive iframe, .embed-responsive object, .embed-responsive video {
+}
+
+.embed-responsive embed, .embed-responsive iframe, .embed-responsive object, .embed-responsive video {
     top: 0; 
     left: 0; 
     width: 100%; 
     height: 100%; 
     position: absolute;
-  }
+}
 
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
     .embed-responsive {
-      padding-top: 0;
+        padding-top: 0;
     }
-  }
+}
+
+  //======================
 
   .navbar-end .control input.input {
       border-radius: 4px !important;
+  }
+  
+
+  .card {
+      border-radius: 6px;
   }

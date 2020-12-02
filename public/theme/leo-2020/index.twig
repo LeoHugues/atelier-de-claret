@@ -1,0 +1,188 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-two-thirds">
+
+                {% setcontent homepage = "homepage" limit 1 returnsingle %}
+                {% if homepage %}
+                <div class="content">
+                    <img class="is-128x128 column is-pulled-left is-hidden-mobile" src="{{ homepage.logo.path }}" alt="{{ homepage.logo.alt|default(homepage|title) }}"/>
+                    <h2 class="title header is-size-1 is-size-3-mobile is-0-mobile">{{ homepage.title }}</h2>
+                    {{ homepage.introduction }}
+
+                    {{ homepage.video.responsive }}
+
+                    {{ homepage.content }}
+
+                    {% include 'partials/_record_meta.twig' with {'record': homepage } %}
+                </div>
+                {% else %}
+                    {# Remove this include if you don't need it anymore. #}
+                    {{ include('partials/_no_content.twig') }}
+                {% endif %}
+            </div>
+            <div class="column">
+                <div class="mt-5">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Pages section #}
+
+ {% include 'partials/_index_divider_top.twig' %}
+
+<section class="section section-pages hero is-success">
+    <div class="container">
+        <div class="column my-6 content">
+            <h1 class="title is-size-1 is-size-3-mobile has-text-centered">Les trois pôles d'activités</h1> 
+        </div>
+        <div class="columns">
+            {% setcontent coworking = 'page/coworking'%}
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-3by2">
+                            {{ coworking.image|showimage(480, 320) }}
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left is-hidden-mobile">
+                                <figure class="image is-96x96">
+                                    <img src="{{ coworking.logo.path }}" alt="{{ coworking.logo.alt|default(coworking|title) }}"/>
+                                </figure>
+                            </div>
+                            <div class="media-content content">
+                                    <h3 class="mt-3">
+                                        <a href="{{ coworking|link }}" class="is-success">{{ coworking|title }}</a>
+                                    </h3>
+                                <p class="is-6 is-capitalized has-text-weight-medium ">
+                                    Espace de travail partagé
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{ coworking|excerpt(150) }}
+                        </div>
+                        <a class="button is-success is-medium is-outlined" href="{{ coworking|link }}">
+                            {{ __('general.phrase.read-more') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% setcontent fablab = 'page/fablab'%}
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-3by2">
+                            {{ fablab.image|showimage(480, 320) }}
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-96x96">
+                                    <img src="{{ fablab.logo.path }}" alt="{{ fablab.logo.alt|default(fablab|title) }}"/>
+                                </figure>
+                            </div>
+                            <div class="media-content content">
+                                <h3 class="mt-3"><a href="{{ fablab|link }}" class="is-success">{{ fablab|title }}</a></h3>
+                                <p class="is-6 is-capitalized has-text-weight-medium">
+                                    Fabrication Numérique
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{ fablab|excerpt(150) }}
+                        </div>
+                        <a class="button is-success is-medium is-outlined" href="{{ fablab|link }}">
+                            {{ __('general.phrase.read-more') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% setcontent formation = 'page/formation'%}
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-3by2">
+                            {{ formation.image|showimage(480, 320) }}
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-96x96">
+                                    <img src="{{ formation.logo.path }}" alt="{{ formation.logo.alt|default(formation|title) }}"/>
+                                </figure>
+                            </div>
+                            <div class="media-content content">
+                                <h3 class="mt-3"><a href="{{ formation|link }}" class="is-success">{{ formation|title }}</a></h3>
+                                <p class="is-6 is-capitalized has-text-weight-medium">
+                                    Atelier et formation
+                                </p>                            
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{ formation|excerpt(150) }}
+                        </div>
+                        <a class="button is-success is-medium is-outlined" href="{{ formation|link }}">
+                            {{ __('general.phrase.read-more') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ {% include 'partials/_pages_divider_bottom.twig' %}
+
+{# Latest entries #}
+
+<section class="section section-latest-entries">
+
+    <div class="container">
+            <div class="column my-6 content">
+                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Actualités</h2>
+            </div>
+        {% setcontent entries = 'entries' latest limit 3 %}
+        {% for entry in entries %}
+            <article role="article" class="media columns">
+                <div class="media-content column is-7">
+                    <div class="content">
+                        <h3><a href="{{ entry|link }}">{{ entry|title }}</a></h3>
+                        {{ entry.teaser }}
+                        {% include 'partials/_record_meta.twig' with {'extended': true, 'record': entry} %}
+                    </div>
+                </div>
+                <div class="media-right column">
+                    <figure class="image">
+                        {{ popup(entry|image, 480, 320) }}
+                    </figure>
+                </div>
+            </article>
+        {% else %}
+            <p>{{ __("general.phrase.no-content-found") }}</p>
+        {% endfor %}
+        <div class="buttons has-addons is-right">
+            <a class="button is-primary" href="{{ path('listing', {'contentTypeSlug': 'entries'}) }}">Read more <span class="is-hidden"> Entries</span></a>
+        </div>
+    </div>
+</section>
+
+{% include "partials/_sub_recent_records.twig" %}
+
+{% endblock main %}
+
+{% block javascripts %}
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v5.0"></script>
+{% endblock javascripts %}

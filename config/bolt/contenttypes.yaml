@@ -8,30 +8,35 @@ homepage:
     name: Homepage
     singular_name: Homepage
     fields:
+        image:
+            type: image
+            label: "Image d'entête"
         title:
             type: text
             class: large
             group: content
             localize: true
-            label: Title
+            label: Titre
             postfix: |
-                The 'Homepage' can contain basic information about the website. This title will be
-                shown on the homepage of the website, as the name implies. To change the
-                <em><strong>name</strong></em> of the site, as is shown in the header, and the tab
-                in the webbrowser, edit <code>sitename:</code> in the configuration file.
-        image:
-            type: image
+                La 'page d'accueil' peut contenir des informations de base sur le site Web. Ce titre sera 
+                affiché sur la page d'accueil du site. Pour changer le <em><strong>nom</strong></em> du site,
+                affiché dans l'en-tête, et dans l'onglet du navigateur Web, modifiez la valeur de <code>sitename:</code> 
+                dans le fichier de configuration principal.
         logo:
             type: image
+            label: "Logo de l'atelier"
         introduction:
             type: redactor
             localize: true
+        video:
+            type: embed
         content:
             type: redactor
             localize: true
+            label: Contenu
         contentlink:
             type: text
-            label: Link
+            label: Lien
             placeholder: 'contentType/slug or https://example.org/'
             postfix: "Use this to add a link for this Homepage. This could either be an 'internal' link like <tt>page//about</tt>, if you use a contentType/slug combination. Otherwise use a proper URL, like `https://example.org`."
             fixture_format: '{url}'
@@ -41,7 +46,7 @@ homepage:
             group: Meta
     viewless: false
     taxonomy: [ categories, tags, foobars ]
-    locales: ['fr', 'en', 'nl', 'pt_BR', 'es']
+    locales: ['fr']
     singleton: true
     icon_many: "fa:home"
     icon_one: "fa:home"
@@ -72,6 +77,10 @@ pages:
         image:
             type: image
             label: Highlighted image
+        logo:
+            type: image
+            label: Logo de la page
+            postfix: "Ce logo est utilisé par exemple, pour introduire les Pages des trois pôles d'activités (Logo Coworking, Fablab, Formation)."
         body:
             type: redactor
             height: 300px
