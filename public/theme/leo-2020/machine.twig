@@ -1,0 +1,82 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+
+<section class="section section-record">
+    <div class="container">
+        {% if record|image  %}
+        <figure class="image is-2by1">
+            <img src="{{ record|image|thumbnail(1080, 540, fit='crop') }}" alt="{{ record|image.alt|default() }}" />
+            <figcaption>
+                {{ record|image.alt|default() }}
+            </figcaption>
+        </figure>
+        {% endif %}
+
+        <div class="columns is-centered">
+            <div class="column is-two-thirds">
+                <article role="article" class="content">
+                    <h1 class="title is-size-1 is-size-3-mobile">{{ record|title }}</h1>
+                    <h3 class="subitle is-3">{{record.teaser}}</h3>
+
+                    <p>{{ record.content }}</p>
+
+                    {% include 'partials/_record_meta.twig' %}
+
+                    {{ include('partials/_recordfooter.twig', { 'record': record, 'extended': true }) }}
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+ {% include 'partials/_machine_features_divider_top.twig' %}
+
+<section class="section section-level hero is-success">
+    <div class="container">
+        <div class="has-text-centered columns content">
+        {% for feature in record.features %}
+            <div class="column">
+                <h1 class="my-2 ">{{ feature.title }}</h1>
+                <h3 class="has-text-weight-medium has-text-light">{{ feature.value.value }}</h3>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+
+ {% include 'partials/_machine_features_divider_bottom.twig' %}
+
+<section class="section section-latest-entries">
+    <div class="container">
+            <div class="column my-6 content">
+                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Actualités</h2>
+            </div>
+        {% setcontent entries = 'articles' latest limit 3 %}
+        {% for entry in entries %}
+            <article role="article" class="media columns">
+                <div class="media-content column is-7">
+                    <div class="content">
+                        <h3><a href="{{ entry|link }}">{{ entry|title }}</a></h3>
+                        {{ entry.teaser }}
+                        {% include 'partials/_record_meta.twig' with {'extended': true, 'record': entry} %}
+                    </div>
+                </div>
+                <div class="media-right column">
+                    <figure class="image">
+                        {{ popup(entry|image, 480, 320) }}
+                    </figure>
+                </div>
+            </article>
+        {% else %}
+            <p>{{ __("general.phrase.no-content-found") }}</p>
+        {% endfor %}
+        <div class="buttons has-addons is-right">
+            <a class="button is-primary" href="{{ path('listing', {'contentTypeSlug': 'articles'}) }}">Read more <span class="is-hidden"> Entries</span></a>
+        </div>
+    </div>
+</section>
+
+{% include "partials/_sub_recent_records.twig" %}
+
+{% endblock main %}

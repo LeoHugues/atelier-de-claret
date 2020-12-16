@@ -1,0 +1,35 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+
+<section class="section section-record">
+    <div class="container">
+        {% if record.image  %}
+        <figure class="image is-2by1">
+            <img src="{{ record|image|thumbnail(1080, 540, fit='crop') }}" alt="{{ record|image.alt|default() }}" />
+            <figcaption>
+                {{ record|image.alt|default() }}
+            </figcaption>
+        </figure>
+        {% endif %}
+
+        <div class="columns is-centered">
+            <div class="column is-two-thirds">
+                <article role="article" class="content">
+                    <h1 class="title is-size-1 is-size-3-mobile">{{ record.name }}</h1>
+                    <p class="subtitle">{{ record.description}}</>
+
+                    {{ record.content }}
+
+                     {% include 'partials/_record_meta.twig' %}
+
+                    {{ include('partials/_recordfooter.twig', { 'record': record, 'extended': true }) }}
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "partials/_sub_recent_records.twig" %}
+
+{% endblock main %}

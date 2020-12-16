@@ -9,8 +9,14 @@
                 {% setcontent homepage = "homepage" limit 1 returnsingle %}
                 {% if homepage %}
                 <div class="content">
-                    <img class="is-128x128 column is-pulled-left is-hidden-mobile" src="{{ homepage.logo.path }}" alt="{{ homepage.logo.alt|default(homepage|title) }}"/>
+                    <img 
+                        class="is-128x128 column is-pulled-left is-hidden-mobile" 
+                        src="{{ homepage.logo.path }}" 
+                        alt="{{ homepage.logo.alt|default(homepage|title) }}"
+                    />
+                    
                     <h2 class="title header is-size-1 is-size-3-mobile is-0-mobile">{{ homepage.title }}</h2>
+                    
                     {{ homepage.introduction }}
 
                     {{ homepage.video.responsive }}
@@ -41,7 +47,7 @@
         <div class="column my-6 content">
             <h1 class="title is-size-1 is-size-3-mobile has-text-centered">Les trois pôles d'activités</h1> 
         </div>
-        <div class="columns">
+        <div class="columns mb-6">
             {% setcontent coworking = 'page/coworking'%}
             <div class="column">
                 <div class="card">
@@ -69,7 +75,7 @@
                         <div class="content">
                             {{ coworking|excerpt(150) }}
                         </div>
-                        <a class="button is-success is-medium is-outlined" href="{{ coworking|link }}">
+                        <a class="button is-link is-medium is-outlined" href="{{ coworking|link }}">
                             {{ __('general.phrase.read-more') }}
                         </a>
                     </div>
@@ -86,7 +92,7 @@
                     </div>
                     <div class="card-content">
                         <div class="media">
-                            <div class="media-left">
+                            <div class="media-left is-hidden-mobile">
                                 <figure class="image is-96x96">
                                     <img src="{{ fablab.logo.path }}" alt="{{ fablab.logo.alt|default(fablab|title) }}"/>
                                 </figure>
@@ -101,7 +107,7 @@
                         <div class="content">
                             {{ fablab|excerpt(150) }}
                         </div>
-                        <a class="button is-success is-medium is-outlined" href="{{ fablab|link }}">
+                        <a class="button is-link is-medium is-outlined" href="{{ fablab|link }}">
                             {{ __('general.phrase.read-more') }}
                         </a>
                     </div>
@@ -118,7 +124,7 @@
                     </div>
                     <div class="card-content">
                         <div class="media">
-                            <div class="media-left">
+                            <div class="media-left is-hidden-mobile">
                                 <figure class="image is-96x96">
                                     <img src="{{ formation.logo.path }}" alt="{{ formation.logo.alt|default(formation|title) }}"/>
                                 </figure>
@@ -133,7 +139,7 @@
                         <div class="content">
                             {{ formation|excerpt(150) }}
                         </div>
-                        <a class="button is-success is-medium is-outlined" href="{{ formation|link }}">
+                        <a class="button is-link is-medium is-outlined" href="{{ formation|link }}">
                             {{ __('general.phrase.read-more') }}
                         </a>
                     </div>
@@ -150,10 +156,10 @@
 <section class="section section-latest-entries">
 
     <div class="container">
-            <div class="column my-6 content">
-                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Actualités</h2>
+            <div class="column my-5 content">
+                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">L'Actualités</h2>
             </div>
-        {% setcontent entries = 'entries' latest limit 3 %}
+        {% setcontent entries = 'articles' latest limit 3 %}
         {% for entry in entries %}
             <article role="article" class="media columns">
                 <div class="media-content column is-7">
@@ -173,8 +179,73 @@
             <p>{{ __("general.phrase.no-content-found") }}</p>
         {% endfor %}
         <div class="buttons has-addons is-right">
-            <a class="button is-primary" href="{{ path('listing', {'contentTypeSlug': 'entries'}) }}">Read more <span class="is-hidden"> Entries</span></a>
+            <a class="button is-primary" href="{{ path('listing', {'contentTypeSlug': 'articles'}) }}">Read more <span class="is-hidden"> Entries</span></a>
         </div>
+    </div>
+</section>
+
+{# Sponsors #}
+
+{% include 'partials/_sponsors_divider_top.twig' %}
+
+<section class="section section-sponsors hero is-info">
+
+    <div class="container">
+            <div class="column my-5 content">
+                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Partenaires</h2>
+            </div>
+        <div class="bd-partner-sponsors">
+        {% for sponsor in homepage.sponsors %}
+            <div class="bd-partner-sponsor">
+                <a class="bd-sponsor-item" href="{{ sponsor.link }}" target="_blank">
+                    <img src="{{ sponsor.logo.path }}" alt="{{ sponsor.logo.alt|default(homepage|title) }}"/>
+                </a>
+            </div>
+        {% else %}
+            <p>{{ __("general.phrase.no-content-found") }}</p>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% include 'partials/_sponsors_divider_bottom.twig' %}
+
+<section class="section">
+
+    <div class="container">
+        <div class="column my-5 content">
+            <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Les Irréductibles</h2>
+        </div>
+        <section class="section is-clipped">
+            <!-- Start Carousel -->
+            <div id="people-carousel" class="carousel">
+                {% setcontent peoples = 'people' latest limit 4 %}
+                {% for people in peoples %}
+                    <div class="px-5 item-{{ loop.index }}">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3 is-covered">
+                                    <img src="{{ people.image.path }}" alt="{{ people.image.alt|default(homepage|title) }}"/>
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content content">
+                                        <h3 class="mt-3">
+                                            <a href="{{ people|link }}" class="is-success">{{ people.name}}</a>
+                                        </h3>
+                                        <p class="subtitle is-6">{{ people.description}}</p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    {{ people.content|excerpt(150) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
     </div>
 </section>
 
@@ -183,6 +254,25 @@
 {% endblock main %}
 
 {% block javascripts %}
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v5.0"></script>
+    <script>
+        bulmaCarousel.attach('#people-carousel', {
+            slidesToScroll: 1,
+            slidesToShow: 3,
+            loop: 1,
+            breakpoints: [{ 
+                changePoint: 480, 
+                slidesToShow: 1, 
+                slidesToScroll: 1 }, 
+                { 
+                changePoint: 640, 
+                slidesToShow: 2, 
+                slidesToScroll: 1 }, 
+                { 
+                changePoint: 768, 
+                slidesToShow: 2, 
+                slidesToScroll: 1 
+            } ]
+
+        });
+    </script>
 {% endblock javascripts %}

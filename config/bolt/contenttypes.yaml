@@ -11,6 +11,7 @@ homepage:
         image:
             type: image
             label: "Image d'entête"
+            localize: true
         title:
             type: text
             class: large
@@ -18,35 +19,53 @@ homepage:
             localize: true
             label: Titre
             postfix: |
-                La 'page d'accueil' peut contenir des informations de base sur le site Web. Ce titre sera 
+                La 'page d\'accueil' peut contenir des informations de base sur le site Web. Ce titre sera 
                 affiché sur la page d'accueil du site. Pour changer le <em><strong>nom</strong></em> du site,
                 affiché dans l'en-tête, et dans l'onglet du navigateur Web, modifiez la valeur de <code>sitename:</code> 
                 dans le fichier de configuration principal.
         logo:
             type: image
             label: "Logo de l'atelier"
+            localize: true
         introduction:
             type: redactor
             localize: true
         video:
             type: embed
+            localize: true
         content:
             type: redactor
             localize: true
             label: Contenu
-        contentlink:
-            type: text
-            label: Lien
-            placeholder: 'contentType/slug or https://example.org/'
-            postfix: "Use this to add a link for this Homepage. This could either be an 'internal' link like <tt>page//about</tt>, if you use a contentType/slug combination. Otherwise use a proper URL, like `https://example.org`."
-            fixture_format: '{url}'
+        sponsors:
+            type: collection
+            label: Partenaires
+            group: Partenaires
+            fields:
+                sponsor:
+                    type: set
+                    label: Partenaire
+                    fields:
+                        title:
+                            type: text
+                            label: Nom
+                            localize: true
+                        logo:
+                            type: image
+                            label: Logo
+                            localize: true
+                        link:
+                            type: text
+                            label: lien
+                            localize: true
         slug:
             type: slug
             uses: title
             group: Meta
+            localize: true
     viewless: false
     taxonomy: [ categories, tags, foobars ]
-    locales: ['fr']
+    locales: fr
     singleton: true
     icon_many: "fa:home"
     icon_one: "fa:home"
@@ -64,35 +83,46 @@ homepage:
 pages:
     name: Pages
     singular_name: Page
+    title_format: '{title}'
+    excerpt_format: '{teaser}'
     fields:
         title:
             type: text
             class: large
             group: content
+            localize: true
         teaser:
             type: textarea
             postfix: |
                 A text-only version of the content, that can be used to "tease"
                 the content when it's used in listing pages or search results.
+            localize: true
         image:
             type: image
             label: Highlighted image
+            localize: true
         logo:
             type: image
             label: Logo de la page
             postfix: "Ce logo est utilisé par exemple, pour introduire les Pages des trois pôles d'activités (Logo Coworking, Fablab, Formation)."
-        body:
-            type: redactor
+            localize: true
+        content:
+            type: html
             height: 300px
+            allow_twig: true
+            localize: true
         slug:
             type: slug
             uses: title
             group: Meta
+            localize: true
         template:
             type: templateselect
             filter: '/^[^_].*\.twig$/'
     taxonomy: [ groups ]
-    records_per_page: 5
+    listing_records: 6
+    default_status: published
+    locales: ['fr']
     order: id
 
 
@@ -107,35 +137,41 @@ pages:
 # The 'order' is set to '-datepublish', which means that newer entries will be
 # shown above older entries.
 
-entries:
-    name: Entries
-    singular_name: Entry
+articles:
+    name: Articles
+    singular_name: Article
+    title_format: '{title}'
+    excerpt_format: '{teaser}'
     fields:
         title:
             type: text
             class: large
             group: Entry
+            localize: true
         teaser:
             type: textarea
             postfix: |
                 A text-only version of the content, that can be used to "tease"
                 the content when it's used in listing pages or search results.
+            localize: true
         image:
             type: image
             upload: entries
         body:
             type: article
+            localize: true
         video:
             type: embed
         slug:
             type: slug
             uses: title
             group: Meta
+            localize: true
     relations:
-        pages:
-            multiple: false
+        articles:
+            multiple: true
             order: title
-            label: Select a page
+            label: "Lien avec d'autres Articles"
         people:
             multiple: false
             label: Author of this Entry
@@ -149,6 +185,7 @@ entries:
     records_per_page: 10
     icon_many: "fa:file-alt"
     icon_one: "fa:file-alt"
+    locales: ['fr']
 
 
 # The 'People' ContentType can be used to build pages about the people in your
@@ -164,30 +201,40 @@ people:
             class: large
             variant: inline
             fixture_format: '{name}'
+            localize: true
         description:
             type: text
             variant: inline
             postfix: This person's job description, title or somesuch
             fixture_format: '{jobTitle}'
+            localize: true
         email:
             type: text
             variant: inline
             fixture_format: '{safeEmail}'
+            localize: true
         image:
             type: image
+            localize: true
         content:
             type: redactor
+            localize: true
         contentlink:
             type: text
             label: Link
             placeholder: 'contentType/slug or https://example.org/'
             postfix: "Use this to add a link for this Person. This could either be an 'internal' link like <tt>page//about</tt>, if you use a contentType/slug combination. Otherwise use a proper URL, like `https://example.org`. If left blank, it'll default to the internal link to this Record's detail page."
             fixture_format: '{url}'
+            localize: true
         slug:
             type: slug
             uses: [ name ]
+            localize: true
     icon_one: fa:user
     icon_many: fa:users
+    record_template: people.twig
+    listing_template: listing.twig
+    locales: ['fr']
 
 
 # The 'Blocks' ContentType is a so-called 'resource ContentType'. This means
@@ -205,23 +252,29 @@ blocks:
             class: large
             label: Title of this Block
             group: Block
+            localize: true
         image:
             type: image
+            localize: true
         teaser:
             type: redactor
             fixture_format: '{paragraph}'
+            localize: true
         content:
             type: redactor
+            localize: true
         contentlink:
             type: text
             label: Link
             placeholder: 'contentType/slug or https://example.org/'
             postfix: "Use this to add a link for this Homepage. This could either be an 'internal' link like <tt>page//about</tt>, if you use a contentType/slug combination. Otherwise use a proper URL, like `https://example.org`."
             fixture_format: '{url}'
+            localize: true
         slug:
             type: slug
             uses: [ title ]
             group: Meta
+            localize: true
     show_on_dashboard: true
     viewless: true
     default_status: published
@@ -229,14 +282,15 @@ blocks:
     order: title
     icon_many: "fa:cubes"
     icon_one: "fa:cube"
+    locales: ['fr']
 
 
 # The 'Products' ContentType can be used to manage information about the
 # products or services you (or your company, organisation) provide.
 
-products:
-    name: Products
-    singular_name: Product
+machines:
+    name: Machines
+    singular_name: Machine
     fields:
         title:
             type: text
@@ -245,35 +299,43 @@ products:
             label: Name of this product
             group: Block
             fixture_format: '{catchPhrase}'
-        feature_1:
-            type: text
-            variant: inline
-            fixture_format: '{bs}'
-            label: "Key feature 1"
-        feature_2:
-            type: text
-            variant: inline
-            fixture_format: '{bs}'
-            label: "Key feature 2"
-        feature_3:
-            type: text
-            variant: inline
-            fixture_format: '{bs}'
-            label: "Key feature 3"
+            localize: true
         price:
             type: text
             fixture_format: "€ {randomDigitNotNull}0,-"
+            localize: true
         image:
             type: image
+            localize: true
         teaser:
             type: redactor
             fixture_format: '{paragraph}'
+            localize: true
         content:
-            type: redactor
+            type: article
+            localize: true
+        features:
+            type: collection
+            label: Fonctions
+            group: Fonctionnalités
+            fields:
+                feature:
+                    type: set
+                    label: Fonction
+                    fields: 
+                        title: 
+                            type: text
+                            label: Titre
+                            localize: true
+                        value:
+                            type: text
+                            label: Valeur
+                            localize: true
         slug:
             type: slug
             uses: [ title ]
             group: Meta
+            localize: true
     show_on_dashboard: true
     viewless: false
     default_status: published
@@ -281,7 +343,9 @@ products:
     order: title
     icon_many: "fa:gifts"
     icon_one: "fa:gift"
-
+    record_template: machine.twig
+    listing_template: listing.twig
+    locales: ['fr']
 # Possible field types:
 #
 # text - varchar(256) - input type text.

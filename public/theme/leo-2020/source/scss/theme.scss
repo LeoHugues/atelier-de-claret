@@ -5,6 +5,7 @@
 @import 'breakpointdebug';
 @import 'node_modules/baguettebox.js/src/baguetteBox';
 @import 'node_modules/prismjs/themes/prism';
+@import '../source/node_modules/bulma-carousel/dist/css/bulma-carousel.min.css';
 
 .visually-hidden:not(:focus):not(:active) {
     position: absolute !important;
@@ -311,6 +312,101 @@ pre {
     fill: #72A1E5;
 }
 
+// Machine features divider bottom
+
+.custom-shape-divider-top-1607010867 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1607010867 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-top-1607010867 .shape-fill {
+    fill: $success;
+}
+
+// Machine features divider top
+
+.custom-shape-divider-bottom-1607011192 {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1607011192 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1607011192 .shape-fill {
+    fill: $success;
+}
+
+
+/**
+*  Sponsor divider top
+*/
+.custom-shape-divider-top-1607521442 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1607521442 svg {
+    position: relative;
+    display: block;
+    width: calc(114% + 1.3px);
+    height: 84px;
+}
+
+.custom-shape-divider-top-1607521442 .shape-fill {
+    fill: $info;
+}
+
+
+/**
+*  Sponsor divider bottom
+*/
+.custom-shape-divider-top-1607529176 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1607529176 svg {
+    position: relative;
+    display: block;
+    width: calc(136% + 1.3px);
+    height: 66px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1607529176 .shape-fill {
+    fill: $info;
+}
+
 /**
  * Styles for 'responsive video embeds'
  */
@@ -349,11 +445,60 @@ pre {
 
   //======================
 
-  .navbar-end .control input.input {
-      border-radius: 4px !important;
-  }
-  
+.navbar-end .control input.input {
+    border-radius: 4px !important;
+}
 
-  .card {
-      border-radius: 6px;
-  }
+
+.card {
+    border-radius: 6px;
+}
+
+.section-level {
+    background-color: $link;
+    color: #FFFFFF;
+}
+  
+  // Sponsors ====
+
+.bd-partner-sponsors {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    justify-content: space-around;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 1216px) {
+    .bd-partner-sponsors {
+        min-height: 120px;
+    }
+}
+
+
+@media screen and (min-width: 769px), print {
+    .bd-partner-sponsor {
+        width: 12rem;
+    }
+}
+
+.bd-partner-sponsor {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: .25rem 1rem;
+    min-height: 80px;
+    text-align: center;
+}
+
+.bd-sponsor-item {
+    flex-grow: 1;
+    position: relative;
+}
+
+.slider {
+    outline: none;
+}
