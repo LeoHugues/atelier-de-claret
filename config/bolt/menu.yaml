@@ -12,9 +12,21 @@ main:
     link: pages/fablab
   - label: Formation
     link: page/formation
+    submenu:
+      - label: Initiation découpe laser
+        link: formation/initiation-a-la-decoupeuse-laser
+      - label: Utiliser la trotec en autonomie
+        link: formation/devenir-autonome-sur-la-trotec
+  - label: Blog
+    link: articles
+    submenu:
+      - label: Le monde des Tiers Lieux
+        link: tag/tierslieux
+      - label: La Fête du nouveaux monde
+        link: tag/fête-du-nouveau-monde
   - label: Adhésion
     link: page/adhesion
   - label: Contact
     link: page/contact
-
+  
 foo: bar

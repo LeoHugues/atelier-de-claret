@@ -10,13 +10,13 @@ tags:
     #listing_template: tag-listing.twig #custom template
     required: false
 
-groups:
-    slug: groups
-    singular_slug: group
-    behaves_like: grouping
-    options: { main: "The main group", meta: "Meta group", other: "The other stuff" }
-    has_sortorder: true
-    required: false
+# groups:
+#     slug: groups
+#     singular_slug: group
+#     behaves_like: grouping
+#     options: { main: "The main group", meta: "Meta group", other: "The other stuff" }
+#     has_sortorder: true
+#     required: false
 
 categories:
     name: Categories
@@ -26,4 +26,14 @@ categories:
     behaves_like: categories
     multiple: true
     options: [ news, events, movies, music, books, life, love, fun ]
+    required: false
+
+groups:
+    name: Groups
+    slug: groups
+    singular_name: Group
+    singular_slug: group
+    behaves_like: groups
+    multiple: true
+    options: [ Irreductibles, Coworkers, Makers, Formateurs]
     required: false

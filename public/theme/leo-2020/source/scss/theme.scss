@@ -221,23 +221,22 @@ pre {
 
 .custom-shape-divider-bottom-1606834316 {
     position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    top: -49px;
+    left: -32px;
+    width: 121%;
     overflow: hidden;
     line-height: 0;
-    transform: rotate(180deg);
 }
 
 .custom-shape-divider-bottom-1606834316 svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 60px;
+    height: 80px;
 }
 
 .custom-shape-divider-bottom-1606834316 .shape-fill {
-    fill: #72A1E5;
+    fill: #ffffff;
 }
 
 // Header divider
@@ -273,11 +272,12 @@ pre {
 
 .custom-shape-divider-bottom-1606835898 {
     position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    top: -49px;
+    left: -32px;
+    width: 121%;
     overflow: hidden;
     line-height: 0;
+    transform: rotateX(180deg);
 }
 
 .custom-shape-divider-bottom-1606835898 svg {
@@ -288,97 +288,75 @@ pre {
 }
 
 .custom-shape-divider-bottom-1606835898 .shape-fill {
-    fill: #694873;
+    fill: #ffffff;
 }
 
 // Pages divider bottom
 .custom-shape-divider-top-1606838621 {
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 49px;
+    left: -32px;
+    width: 121%;
     overflow: hidden;
-    line-height: 0;
+    line-height: 0;    
+    transform: rotateX(180deg);
 }
 
 .custom-shape-divider-top-1606838621 svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 67px;
+    height: 80px;
 }
 
 .custom-shape-divider-top-1606838621 .shape-fill {
-    fill: #72A1E5;
+    fill: #ffffff;
 }
 
 // Machine features divider bottom
 
-.custom-shape-divider-top-1607010867 {
+.custom-shape-divider-top-1610655488 {
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: -49px;
+    left: -32px;
+    width: 121%;
     overflow: hidden;
     line-height: 0;
 }
 
-.custom-shape-divider-top-1607010867 svg {
+.custom-shape-divider-top-1610655488 svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 150px;
+    height: 90px;
 }
 
-.custom-shape-divider-top-1607010867 .shape-fill {
-    fill: $success;
+.custom-shape-divider-top-1610655488 .shape-fill {
+    fill: #FFFFFF;
 }
-
-// Machine features divider top
-
-.custom-shape-divider-bottom-1607011192 {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
-
-.custom-shape-divider-bottom-1607011192 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 150px;
-}
-
-.custom-shape-divider-bottom-1607011192 .shape-fill {
-    fill: $success;
-}
-
 
 /**
 *  Sponsor divider top
 */
 .custom-shape-divider-top-1607521442 {
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 49px;
+    left: -32px;
+    width: 121%;
     overflow: hidden;
     line-height: 0;
+    transform: rotate(180deg);
 }
 
 .custom-shape-divider-top-1607521442 svg {
     position: relative;
     display: block;
     width: calc(114% + 1.3px);
-    height: 84px;
+    height: 105px;
 }
 
 .custom-shape-divider-top-1607521442 .shape-fill {
-    fill: $info;
+    fill: #ffffff;
 }
 
 
@@ -387,12 +365,11 @@ pre {
 */
 .custom-shape-divider-top-1607529176 {
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: -49px;
+    left: -32px;
+    width: 121%;
     overflow: hidden;
     line-height: 0;
-    transform: rotate(180deg);
 }
 
 .custom-shape-divider-top-1607529176 svg {
@@ -404,43 +381,7 @@ pre {
 }
 
 .custom-shape-divider-top-1607529176 .shape-fill {
-    fill: $info;
-}
-
-/**
- * Styles for 'responsive video embeds'
- */
-.embed-responsive {
-    height: 0; 
-    padding-top: 25px; 
-    padding-bottom: 45%; 
-    margin-top: 2em; 
-    margin-right: 4.5em;
-    margin-left: 2em;
-    margin-bottom: 1.5em;
-    position: relative; 
-    overflow: hidden;
-}
-.embed-responsive.vimeo {
-    padding-top: 0;
-}
-
-.embed-responsive.widescreen {
-    padding-bottom: 57.25%;
-}
-
-.embed-responsive embed, .embed-responsive iframe, .embed-responsive object, .embed-responsive video {
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    position: absolute;
-}
-
-@media (max-width: 767px) {
-    .embed-responsive {
-        padding-top: 0;
-    }
+    fill: #ffffff;
 }
 
   //======================
@@ -452,6 +393,27 @@ pre {
 
 .card {
     border-radius: 6px;
+}
+
+.card .is-success {
+    background-color: $success;
+}
+
+.card .is-link {
+    background-color: $link;
+}
+
+.card .is-info {
+    background-color: $info;
+}
+
+.card .is-formation {
+    background-color: $formation;
+}
+
+.card .is-primary {
+    background: rgb(105,72,115);
+    background: linear-gradient(90deg, rgba(105,72,115,1) 0%, rgba(171,58,130,1) 0%, rgba(194,53,135,1) 71%);
 }
 
 .section-level {
@@ -501,4 +463,47 @@ pre {
 
 .slider {
     outline: none;
+}
+
+
+
+.tab-content {
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  .tabs ul {
+	flex-shrink: 1;
+	flex-wrap: wrap;
+	border-bottom-color: transparent;
+}
+
+.bg-blob {
+    background-image: url("../image/machine_feature_blob.svg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;
+    min-height: 21em;
+}
+
+section.is-primary {
+    background-image: linear-gradient(to right top, #694873, #7d477d, #934484, #aa3e87, #c23587);
+}
+
+section.is-success {
+    background: rgb(114,161,229);
+    background: linear-gradient(148deg, rgba(114,161,229,1) 0%, rgba(140,167,220,1) 31%, rgba(223,185,193,1) 98%, rgba(252,191,183,1) 100%);
+}
+
+section.is-info {
+    background: rgb(252,191,183);
+    background: linear-gradient(145deg, rgba(252,191,183,1) 16%, rgba(231,147,146,1) 100%, rgba(220,124,126,1) 100%, rgba(196,74,84,1) 100%);
+}
+
+nav.is-primary {
+    background: rgb(105,72,115);
+    background: linear-gradient(90deg, rgba(105,72,115,1) 0%, rgba(171,58,130,1) 33%, rgba(194,53,135,1) 58%);
 }

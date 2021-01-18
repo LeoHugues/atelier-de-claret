@@ -1,10 +1,15 @@
 {% if record.contenttype.slug|default() not in ['showcases', 'entries'] %}
 {% setcontent homepage = "homepage" limit 1 returnsingle %}
 <section class="hero hero-image is-primary is-bold is-medium {% if app.request.get('_route') == "homepage" %}is-large{% endif %}"
-    {%- if homepage|image %}
-         data-background-image="{{ homepage.image }}" style="background-image: url({{ homepage.image }})"
+    {% if image_header is defined %}
+        data-background-image="{{ image_header }}" style="background-image: url({{ image_header }})"
+    {% elseif record is defined and record.contenttype not in ['people', 'formations'] and record|image %}
+        data-background-image="{{ record.image }}" style="background-image: url({{ record.image }})"
+    {%- elseif homepage|image %}
+        data-background-image="{{ homepage.image }}" style="background-image: url({{ homepage.image }})"
     {% endif -%}
     >
+
     <div class="hero-body">
         <div class="container has-text-centered">
             <h1 class="title">{{ config.get('general/sitename') }}</h1>

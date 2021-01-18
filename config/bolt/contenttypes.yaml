@@ -27,13 +27,7 @@ homepage:
             type: image
             label: "Logo de l'atelier"
             localize: true
-        introduction:
-            type: redactor
-            localize: true
-        video:
-            type: embed
-            localize: true
-        content:
+        body:
             type: redactor
             localize: true
             label: Contenu
@@ -86,31 +80,31 @@ pages:
     title_format: '{title}'
     excerpt_format: '{teaser}'
     fields:
+        content:
+            type: article
+            localize: true
+            group: Contenu
+            label: |
+                Contenu de la page (WISIWIG)        
         title:
             type: text
             class: large
-            group: content
-            localize: true
-        teaser:
-            type: textarea
-            postfix: |
-                A text-only version of the content, that can be used to "tease"
-                the content when it's used in listing pages or search results.
+            group: Général
+            label: |
+                Titre de la page
             localize: true
         image:
             type: image
-            label: Highlighted image
+            label: |
+                Image d'entête
             localize: true
+            group: Général
         logo:
             type: image
             label: Logo de la page
             postfix: "Ce logo est utilisé par exemple, pour introduire les Pages des trois pôles d'activités (Logo Coworking, Fablab, Formation)."
             localize: true
-        content:
-            type: html
-            height: 300px
-            allow_twig: true
-            localize: true
+            group: Général
         slug:
             type: slug
             uses: title
@@ -119,7 +113,8 @@ pages:
         template:
             type: templateselect
             filter: '/^[^_].*\.twig$/'
-    taxonomy: [ groups ]
+            group: Meta
+            localize: true
     listing_records: 6
     default_status: published
     locales: ['fr']
@@ -157,11 +152,10 @@ articles:
         image:
             type: image
             upload: entries
+            localize: true
         body:
             type: article
             localize: true
-        video:
-            type: embed
         slug:
             type: slug
             uses: title
@@ -230,12 +224,114 @@ people:
             type: slug
             uses: [ name ]
             localize: true
+    taxonomy: groups
     icon_one: fa:user
     icon_many: fa:users
     record_template: people.twig
     listing_template: listing.twig
     locales: ['fr']
 
+# The 'People' ContentType can be used to build pages about the people in your
+# company, organisation or any other kind of team.
+
+formation:
+    name: Formations
+    singular_name: Formation
+    title_format: "{title}"
+    fields:
+        title:
+            type: text
+            class: large
+            variant: inline
+            fixture_format: '{title}'
+            localize: true
+        image:
+            type: image
+            localize: true
+        content:
+            type: article
+            localize: true
+        slug:
+            type: slug
+            uses: [ title ]
+            localize: true
+        price:
+            type: text
+            fixture_format: "€ {randomDigitNotNull}0,-"
+            localize: true
+            relations:
+    relations:
+        people:
+            multiple: true
+            label: Formateurs
+            required: false
+    icon_one: fa:award
+    icon_many: fa:award
+    record_template: people.twig
+    listing_template: listing.twig
+    locales: ['fr']
+
+# The 'Products' ContentType can be used to manage information about the
+# products or services you (or your company, organisation) provide.
+
+machines:
+    name: Machines
+    singular_name: Machine
+    fields:
+        title:
+            type: text
+            class: large
+            variant: inline
+            label: Name of this product
+            group: Block
+            fixture_format: '{catchPhrase}'
+            localize: true
+        price:
+            type: text
+            fixture_format: "€ {randomDigitNotNull}0,-"
+            localize: true
+        image:
+            type: image
+            localize: true
+        teaser:
+            type: redactor
+            fixture_format: '{paragraph}'
+            localize: true
+        content:
+            type: article
+            localize: true
+        features:
+            type: collection
+            label: Caractéristiques
+            group: Caractéristiques
+            fields:
+                feature:
+                    type: set
+                    label: Caractéristique
+                    fields: 
+                        title: 
+                            type: text
+                            label: Titre
+                            localize: true
+                        value:
+                            type: text
+                            label: Valeur
+                            localize: true
+        slug:
+            type: slug
+            uses: [ title ]
+            group: Meta
+            localize: true
+    show_on_dashboard: true
+    viewless: false
+    default_status: published
+    searchable: false
+    order: title
+    icon_many: "fa:cogs"
+    icon_one: "fa:cog"
+    record_template: machine.twig
+    listing_template: listing.twig
+    locales: ['fr']
 
 # The 'Blocks' ContentType is a so-called 'resource ContentType'. This means
 # that it can be used to manage smaller pieces of content, like the 'about us'
@@ -284,68 +380,6 @@ blocks:
     icon_one: "fa:cube"
     locales: ['fr']
 
-
-# The 'Products' ContentType can be used to manage information about the
-# products or services you (or your company, organisation) provide.
-
-machines:
-    name: Machines
-    singular_name: Machine
-    fields:
-        title:
-            type: text
-            class: large
-            variant: inline
-            label: Name of this product
-            group: Block
-            fixture_format: '{catchPhrase}'
-            localize: true
-        price:
-            type: text
-            fixture_format: "€ {randomDigitNotNull}0,-"
-            localize: true
-        image:
-            type: image
-            localize: true
-        teaser:
-            type: redactor
-            fixture_format: '{paragraph}'
-            localize: true
-        content:
-            type: article
-            localize: true
-        features:
-            type: collection
-            label: Fonctions
-            group: Fonctionnalités
-            fields:
-                feature:
-                    type: set
-                    label: Fonction
-                    fields: 
-                        title: 
-                            type: text
-                            label: Titre
-                            localize: true
-                        value:
-                            type: text
-                            label: Valeur
-                            localize: true
-        slug:
-            type: slug
-            uses: [ title ]
-            group: Meta
-            localize: true
-    show_on_dashboard: true
-    viewless: false
-    default_status: published
-    searchable: false
-    order: title
-    icon_many: "fa:gifts"
-    icon_one: "fa:gift"
-    record_template: machine.twig
-    listing_template: listing.twig
-    locales: ['fr']
 # Possible field types:
 #
 # text - varchar(256) - input type text.

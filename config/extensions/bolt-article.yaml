@@ -2,16 +2,45 @@
 
 # All options: blockcode, buttonlink, definedlinks, handle, inlineformat, icons, specialchars, reorder, print, selector, style, tags, underline, variable
 default:
-  plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline ]
+  plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline, style, bulma ]
   source: true
+  custom:
+    css: ['/theme/leo-2020/css/bulma.css', '/theme/leo-2020/css/theme.css']
   grid:
-    classname: 'article-grid'
+    classname: 'columns'
     columns: 12
     patterns:
-      '4|4|4': 'col-4|col-4|col-4'
-      '4|8': 'col-4|col-8'
-      '6|6': 'col-6|col-6'
-      '8|4': 'col-8|col-4'
+      '4|4|4': 'column|column|column'
+      '4|8': 'column is-one-third|column'
+      '6|6': 'column is-half|column'
+      '8|4': 'column is-two-thirds|column'
+  addbarAdd: ['card']
+  card: 
+    template: |
+        <div class="card px-0 py-0">
+            <div class="is-success">
+                <h4 class="my-5 has-text-centered has-text-light title is-5">
+                    Entête
+                </h4>
+            </div>
+            <div class="card-content">
+                <div class="content">
+                    <p>
+                        Corps
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                        <a href="#">#css</a> <a href="#">#responsive</a>
+                    </p>
+                </div>
+            </div>
+            <div>
+              <h4 class="py-3 px-3 has-text-centered">
+                  bas de page
+              </h4>
+            </div>
+        </div>
+
 
 plugins:
-  ~
+    bulma: ['bulma/bulma-content.js']
+

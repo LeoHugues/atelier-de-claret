@@ -21,7 +21,9 @@
 
             <header role="banner" class="header">
             {{ include('partials/_navbar.twig') }}
-            {{ include('partials/_header.twig') }}
+            {% block header %}
+                {{ include('partials/_header.twig') }}
+            {% endblock %}
             </header>
 
             {{ widgets('main_top') }}
@@ -33,6 +35,8 @@
             {{ widgets('main_bottom') }}
 
         {% endblock body %}
+        
+        {% include "partials/_sub_recent_records.twig" %}
 
         {{ include('partials/_footer.twig') }}
 

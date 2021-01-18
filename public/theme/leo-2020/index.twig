@@ -17,11 +17,7 @@
                     
                     <h2 class="title header is-size-1 is-size-3-mobile is-0-mobile">{{ homepage.title }}</h2>
                     
-                    {{ homepage.introduction }}
-
-                    {{ homepage.video.responsive }}
-
-                    {{ homepage.content }}
+                    {{ homepage.body }}
 
                     {% include 'partials/_record_meta.twig' with {'record': homepage } %}
                 </div>
@@ -30,8 +26,11 @@
                     {{ include('partials/_no_content.twig') }}
                 {% endif %}
             </div>
-            <div class="column">
-                <div class="mt-5">
+            <div class="column is-hidden-mobile">
+                <div class="mt-6">
+                    <div id="fb-root">
+                        <div class="fb-page" data-href="https://www.facebook.com/latelierdeclaret/" data-tabs="timeline" data-width="350" data-height="820" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/latelierdeclaret/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/latelierdeclaret/">L&#039;Atelier de Claret</a></blockquote></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,10 +39,10 @@
 
 {# Pages section #}
 
- {% include 'partials/_index_divider_top.twig' %}
 
 <section class="section section-pages hero is-success">
-    <div class="container">
+ {% include 'partials/_index_divider_top.twig' %}
+ <div class="container">
         <div class="column my-6 content">
             <h1 class="title is-size-1 is-size-3-mobile has-text-centered">Les trois pôles d'activités</h1> 
         </div>
@@ -65,7 +64,7 @@
                             </div>
                             <div class="media-content content">
                                     <h3 class="mt-3">
-                                        <a href="{{ coworking|link }}" class="is-success">{{ coworking|title }}</a>
+                                        <a href="{{ coworking|link }}">{{ coworking|title }}</a>
                                     </h3>
                                 <p class="is-6 is-capitalized has-text-weight-medium ">
                                     Espace de travail partagé
@@ -98,7 +97,7 @@
                                 </figure>
                             </div>
                             <div class="media-content content">
-                                <h3 class="mt-3"><a href="{{ fablab|link }}" class="is-success">{{ fablab|title }}</a></h3>
+                                <h3 class="mt-3"><a href="{{ fablab|link }}">{{ fablab|title }}</a></h3>
                                 <p class="is-6 is-capitalized has-text-weight-medium">
                                     Fabrication Numérique
                                 </p>
@@ -130,7 +129,7 @@
                                 </figure>
                             </div>
                             <div class="media-content content">
-                                <h3 class="mt-3"><a href="{{ formation|link }}" class="is-success">{{ formation|title }}</a></h3>
+                                <h3 class="mt-3"><a href="{{ formation|link }}">{{ formation|title }}</a></h3>
                                 <p class="is-6 is-capitalized has-text-weight-medium">
                                     Atelier et formation
                                 </p>                            
@@ -147,9 +146,9 @@
             </div>
         </div>
     </div>
+     {% include 'partials/_pages_divider_bottom.twig' %}
 </section>
 
- {% include 'partials/_pages_divider_bottom.twig' %}
 
 {# Latest entries #}
 
@@ -171,7 +170,7 @@
                 </div>
                 <div class="media-right column">
                     <figure class="image">
-                        {{ popup(entry|image, 480, 320) }}
+                        <img src="{{ entry.image|thumbnail(500, 300, fit="crop") }}" alt="{{ entry.image.alt|default(entry|title) }}"/>
                     </figure>
                 </div>
             </article>
@@ -186,13 +185,11 @@
 
 {# Sponsors #}
 
-{% include 'partials/_sponsors_divider_top.twig' %}
-
 <section class="section section-sponsors hero is-info">
-
+{% include 'partials/_sponsors_divider_bottom.twig' %}
     <div class="container">
             <div class="column my-5 content">
-                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Partenaires</h2>
+                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Nos Partenaires</h2>
             </div>
         <div class="bd-partner-sponsors">
         {% for sponsor in homepage.sponsors %}
@@ -206,39 +203,38 @@
         {% endfor %}
         </div>
     </div>
+{% include 'partials/_sponsors_divider_top.twig' %}
 </section>
-
-{% include 'partials/_sponsors_divider_bottom.twig' %}
 
 <section class="section">
 
-    <div class="container">
+    <div class="container px-6">
         <div class="column my-5 content">
             <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Les Irréductibles</h2>
         </div>
-        <section class="section is-clipped">
+        <section class="section is-clipped px-2">
             <!-- Start Carousel -->
             <div id="people-carousel" class="carousel">
-                {% setcontent peoples = 'people' latest limit 4 %}
+                {% setcontent peoples = 'people' where {groups: 'Irreductibles'}%}
                 {% for people in peoples %}
                     <div class="px-5 item-{{ loop.index }}">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3 is-covered">
-                                    <img src="{{ people.image.path }}" alt="{{ people.image.alt|default(homepage|title) }}"/>
+                                    <img src="{{ people.image.path }}" alt="{{ people.image.alt|default(people|title) }}"/>
                                 </figure>
                             </div>
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content content">
                                         <h3 class="mt-3">
-                                            <a href="{{ people|link }}" class="is-success">{{ people.name}}</a>
+                                            <a href="{{ people|link }}">{{ people.name}}</a>
                                         </h3>
                                         <p class="subtitle is-6">{{ people.description}}</p>
                                     </div>
                                 </div>
                                 <div class="content">
-                                    {{ people.content|excerpt(150) }}
+                                    {{ people.content|excerpt(90) }}
                                 </div>
                             </div>
                         </div>
@@ -249,15 +245,14 @@
     </div>
 </section>
 
-{% include "partials/_sub_recent_records.twig" %}
-
 {% endblock main %}
 
 {% block javascripts %}
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="y6QkSogE"></script>
     <script>
         bulmaCarousel.attach('#people-carousel', {
             slidesToScroll: 1,
-            slidesToShow: 3,
+            slidesToShow: 4,
             loop: 1,
             breakpoints: [{ 
                 changePoint: 480, 

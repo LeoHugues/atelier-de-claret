@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var $    = require('gulp-load-plugins')();
 var argv = require('yargs').argv;
 
+
 // Check for --production flag
 var PRODUCTION = !!(argv.production);
 
@@ -23,13 +24,29 @@ var javascriptFiles = [
     'node_modules/prismjs/components/prism-bash.js',
     'node_modules/prismjs/components/prism-markup-templating.js',
     'node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js',
-    'node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js'
+    'node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js',
+    'node_modules/jquery/dist/jquery.min.js'
 ];
 
 // Compile Foundation Sass into CSS. In production, the CSS is compressed
 gulp.task('bulma-sass', function() {
 
     return gulp.src('scss/bulma.scss')
+      .pipe($.sourcemaps.init())
+      .pipe($.sass({
+        includePaths: PATHS.sass
+      })
+        .on('error', $.sass.logError))
+      .pipe($.autoprefixer())
+      .pipe($.if(PRODUCTION, $.cssnano()))
+      .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+      .pipe(gulp.dest('../css'));
+  });
+
+// Compile Foundation Sass into CSS. In production, the CSS is compressed
+gulp.task('bulma-grid-sass', function() {
+
+    return gulp.src('node_modules/bulma/sass/grid/columns.sass')
       .pipe($.sourcemaps.init())
       .pipe($.sass({
         includePaths: PATHS.sass
