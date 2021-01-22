@@ -5,7 +5,7 @@
 <section class="section section-page">
     <div class="container">
         <div class="columns">
-            <div class="column is-four-fifths">
+            <div class="column is-8">
                 <article role="article" class="content">
                     {% if record.logo.path is defined and record.logo is not empty %}
                         <img 
@@ -23,6 +23,14 @@
                         {{ block('sub_fields', 'helpers/_fields.twig') }}
                     {% endwith %}
                 </article>
+            </div>
+            <div class="column">
+                {% include 'partials/_social_links.twig' %}
+                <div class="mt-4 is-hidden-mobile">
+                    <div id="fb-root">
+                        <div class="fb-page" data-href="https://www.facebook.com/latelierdeclaret/" data-tabs="timeline" data-width="350" data-height="820" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/latelierdeclaret/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/latelierdeclaret/">L&#039;Atelier de Claret</a></blockquote></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -126,26 +134,30 @@
 
 
 {% block javascripts %}
-    <script>
-        bulmaCarousel.attach('#people-carousel', {
-            slidesToScroll: 1,
-            slidesToShow: 4,
-            loop: 1,
-            breakpoints: [{ 
-                changePoint: 480, 
-                slidesToShow: 1, 
-                slidesToScroll: 1 }, 
-                { 
-                changePoint: 640, 
-                slidesToShow: 2, 
-                slidesToScroll: 1 }, 
-                { 
-                changePoint: 768, 
-                slidesToShow: 2, 
-                slidesToScroll: 1 
-            } ]
 
-        });
+    <!-- Load Facebook SDK for JavaScript -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="y6QkSogE"></script>
+
+    <script>
+    bulmaCarousel.attach('#people-carousel', {
+        slidesToScroll: 1,
+        slidesToShow: 4,
+        loop: 1,
+        breakpoints: [{ 
+            changePoint: 480, 
+            slidesToShow: 1, 
+            slidesToScroll: 1 }, 
+            { 
+            changePoint: 640, 
+            slidesToShow: 2, 
+            slidesToScroll: 1 }, 
+            { 
+            changePoint: 768, 
+            slidesToShow: 2, 
+            slidesToScroll: 1 
+        } ]
+
+    });
 
     $('.tabs').each(function(index) {
       var $tabParent = $(this);

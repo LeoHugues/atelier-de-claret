@@ -28,6 +28,7 @@ var javascriptFiles = [
     'node_modules/jquery/dist/jquery.min.js'
 ];
 
+
 // Compile Foundation Sass into CSS. In production, the CSS is compressed
 gulp.task('bulma-sass', function() {
 

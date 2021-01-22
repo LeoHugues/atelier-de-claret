@@ -5,7 +5,7 @@
 <section class="section section-page">
     <div class="container">
         <div class="columns">
-            <div class="column is-two-thirds">
+            <div class="column is-8">
                 <article role="article" class="content">
                     {% if record.logo.path is defined and record.logo is not empty %}
                         <img 
@@ -27,6 +27,9 @@
                     {{ dump(record) }}
                     #}
                 </article>
+            </div>
+            <div class="column">
+                {% include 'partials/_social_links.twig' %}
             </div>
         </div>
     </div>

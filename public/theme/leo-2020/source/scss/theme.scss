@@ -6,6 +6,8 @@
 @import 'node_modules/baguettebox.js/src/baguetteBox';
 @import 'node_modules/prismjs/themes/prism';
 @import '../source/node_modules/bulma-carousel/dist/css/bulma-carousel.min.css';
+@import "../source/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
 
 .visually-hidden:not(:focus):not(:active) {
     position: absolute !important;

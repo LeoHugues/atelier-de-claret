@@ -1,4 +1,4 @@
-@import url(../source/node_modules/bulma-carousel/dist/css/bulma-carousel.min.css);h1,h2,h3,h4,h5,h6{font-family:Bitter,serif}li a,p a{text-decoration:underline}
+@import url(../source/node_modules/bulma-carousel/dist/css/bulma-carousel.min.css);@import url(../source/node_modules/@fortawesome/fontawesome-free/css/all.min.css);h1,h2,h3,h4,h5,h6{font-family:Bitter,serif}li a,p a{text-decoration:underline}
 
 /*!
  * baguetteBox.js
