@@ -161,6 +161,21 @@ articles:
             uses: title
             group: Meta
             localize: true
+        priority:
+            type: select
+            values:
+                a: |
+                    Mettre en avant
+                b: |
+                    Mettre en second
+                c: |
+                    Priorité normal
+            default: [c]
+            group: Meta
+            label: |
+                Priorité d'affichage
+            localize: true
+
     relations:
         articles:
             multiple: true
@@ -171,8 +186,8 @@ articles:
             label: Author of this Entry
             required: false
     taxonomy: [ categories, tags, groups ]
-    record_template: entry.twig
-    listing_template: listing.twig
+    record_template: article.twig
+    listing_template: blog-listing.twig
     listing_records: 10
     default_status: published
     order: -publishedAt

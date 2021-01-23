@@ -1,0 +1,58 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+
+<section class="section section-record">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-8">
+                {% if record|image  %}
+                <figure class="image is-2by1">
+                    <img src="{{ record|image|thumbnail(1080, 540, fit='crop') }}" alt="{{ record|image.alt|default() }}" />
+                    <figcaption>
+                        {{ record|image.alt|default() }}
+                    </figcaption>
+                </figure>
+                {% endif %}
+                <article role="article" class="content">
+                    <h1 class="title is-size-1 is-size-3-mobile">{{ record|title }}</h1>
+
+                    {{record.body}}
+
+                    {% include 'partials/_record_meta.twig' %}
+
+                    {{ include('partials/_recordfooter.twig', { 'record': record, 'extended': true }) }}
+                </article>
+            </div>
+            <div class="column content">
+                {% include 'partials/_social_links.twig' %}
+
+                {% set relatedrecords = record|related %}
+                
+                {% if relatedrecords is not empty %}
+                    <div class="is-hidden-mobile mt-6">
+                        {% for entry in relatedrecords %}
+                            {% if entry.contenttype in ['articles'] %}
+                            <article role="article" class="media columns">
+                                <div class="media-content column is-7">
+                                    <div class="content">
+                                        <h3 class="title is-size-5"><a href="{{ entry|link }}">{{ entry|title|excerpt(25) }}</a></h3>
+                                        {{ entry.teaser|excerpt(40) }}
+                                    </div>
+                                </div>
+                                <div class="media-right column">
+                                    <img src="{{ entry.image|thumbnail(300, 300, fit="crop") }}" alt="{{ entry.image.alt|default(entry|title) }}"/>
+                                </div>
+                            </article>     
+                            {% endif %}               
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% include 'partials/_aside_taxonomylinks.twig' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

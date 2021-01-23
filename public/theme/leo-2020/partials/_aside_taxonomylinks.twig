@@ -1,0 +1,19 @@
+<h1 class="title is-size-3">Catégories</h1>
+
+<div class="tags">
+    {% for category in config.get('taxonomies/categories/options') %}
+        <span class="label">
+            <a class="tag is-link" href="/categories/{{ category|slug }}">{{ category }}</a>
+        </span>
+    {% endfor %}
+</div>
+
+<h1 class="title is-size-3">Tags</h1>
+
+<div class="tags">
+    {% for tag in tag_cloud() %}
+        <span class="label">
+            <a class="tag is-primary" href="/tag/{{ tag.slug }}">#{{ tag.name }} ({{ tag.count }})</a>
+        </span>
+    {% endfor %}
+</div>
