@@ -57,6 +57,10 @@ homepage:
             uses: title
             group: Meta
             localize: true
+        seo:
+            type: seo
+            group: "Paramètres SEO"
+            localize: true
     viewless: false
     taxonomy: [ categories, tags, foobars ]
     locales: fr
