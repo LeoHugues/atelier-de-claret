@@ -356,7 +356,7 @@ machines:
 blocks:
     name: Blocks
     singular_name: Block
-    excerpt_format: '{teaser}'
+    excerpt_format: '{content}'
     fields:
         title:
             type: text
@@ -367,23 +367,17 @@ blocks:
         image:
             type: image
             localize: true
-        teaser:
-            type: redactor
-            fixture_format: '{paragraph}'
-            localize: true
         content:
-            type: redactor
-            localize: true
-        contentlink:
-            type: text
-            label: Link
-            placeholder: 'contentType/slug or https://example.org/'
-            postfix: "Use this to add a link for this Homepage. This could either be an 'internal' link like <tt>page//about</tt>, if you use a contentType/slug combination. Otherwise use a proper URL, like `https://example.org`."
-            fixture_format: '{url}'
+            type: article
             localize: true
         slug:
             type: slug
             uses: [ title ]
+            group: Meta
+            localize: true
+        template:
+            type: templateselect
+            filter: '/^[^_].*\.twig$/'
             group: Meta
             localize: true
     show_on_dashboard: true
