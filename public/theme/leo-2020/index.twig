@@ -16,7 +16,13 @@
                     />
                     
                     <h2 class="title header is-size-1 is-size-3-mobile is-0-mobile">{{ homepage.title }}</h2>
-                    
+                    {{ homepage.introduction }}
+                    <div    class="youtube_player py-6 has-ratio" 
+                            video-url="{{ homepage.video.url }}" 
+                            video-width="{{ homepage.video.width }}" 
+                            video-height="{{ homepage.video.height }}" 
+                            showinfo="true">
+                    </div>
                     {{ homepage.body }}
 
                     {% include 'partials/_record_meta.twig' with {'record': homepage } %}
@@ -250,9 +256,9 @@
 {% endblock main %}
 
 {% block javascripts %}
-   
-        <!-- Load Facebook SDK for JavaScript -->
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="y6QkSogE"></script>
+
+    <!-- Load Facebook SDK for JavaScript -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="y6QkSogE"></script>
 
     <script>
         bulmaCarousel.attach('#people-carousel', {

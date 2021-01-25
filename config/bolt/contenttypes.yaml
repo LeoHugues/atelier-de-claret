@@ -27,8 +27,18 @@ homepage:
             type: image
             label: "Logo de l'atelier"
             localize: true
+        introduction:
+            type: article
+            localize: true
+        video:
+            type: embed
+            localize: true
+            default:
+                url: "https://www.youtube.com/embed/oO9cBl6FXg4"
+                width: "640"
+                height: "360"
         body:
-            type: redactor
+            type: article
             localize: true
             label: Contenu
         sponsors:

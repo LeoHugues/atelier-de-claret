@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+const terser = require('gulp-terser');
 var $    = require('gulp-load-plugins')();
 var argv = require('yargs').argv;
 
@@ -25,7 +26,9 @@ var javascriptFiles = [
     'node_modules/prismjs/components/prism-markup-templating.js',
     'node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js',
     'node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js',
-    'node_modules/jquery/dist/jquery.min.js'
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/tarteaucitronjs/tarteaucitron.js',
+    'node_modules/bulma-carousel/dist/js/bulma-carousel.min.js'
 ];
 
 
@@ -75,10 +78,11 @@ gulp.task('theme-sass', function() {
       .pipe(gulp.dest('../css'));
   });
 
+
 // Set up 'compress' task.
 gulp.task('compress', function() {
   return gulp.src(javascriptFiles)
-    .pipe($.if(PRODUCTION, $.uglify()))
+    .pipe($.if(PRODUCTION, terser()))
     .pipe($.concat('app.js'))
     .pipe(gulp.dest('../js'));
 });
