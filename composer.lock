@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b65bf220487e324f74fe6c4183c91522",
+    "content-hash": "d0065336f83840c45af3024e4aea5b73",
     "packages": [
         {
             "name": "api-platform/core",
@@ -402,6 +402,53 @@
                 "source": "https://github.com/bobdenotter/configuration-notices/tree/1.1.8"
             },
             "time": "2020-10-24T07:13:03+00:00"
+        },
+        {
+            "name": "bobdenotter/sitemap",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobdenotter/sitemap.git",
+                "reference": "0c330487ce9459701d3c6af966dc6b4efd1b7502"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobdenotter/sitemap/zipball/0c330487ce9459701d3c6af966dc6b4efd1b7502",
+                "reference": "0c330487ce9459701d3c6af966dc6b4efd1b7502",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "bolt/core": "^4.0.0",
+                "symplify/easy-coding-standard": "^7.0"
+            },
+            "type": "bolt-extension",
+            "extra": {
+                "entrypoint": "Bobdenotter\\Sitemap\\Extension"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bobdenotter\\Sitemap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bob den Otter",
+                    "email": "bobdenotter@gmail.com"
+                }
+            ],
+            "description": "Provide a sitemap (.xml) for your Bolt 4 site",
+            "support": {
+                "issues": "https://github.com/bobdenotter/sitemap/issues",
+                "source": "https://github.com/bobdenotter/sitemap/tree/1.0.4"
+            },
+            "time": "2020-11-22T11:04:43+00:00"
         },
         {
             "name": "bobdenotter/weatherwidget",
