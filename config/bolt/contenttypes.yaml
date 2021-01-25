@@ -78,7 +78,7 @@ pages:
     name: Pages
     singular_name: Page
     title_format: '{title}'
-    excerpt_format: '{teaser}'
+    excerpt_format: '{content}'
     fields:
         content:
             type: article
