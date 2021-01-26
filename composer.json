@@ -12,6 +12,7 @@
         "bolt/newswidget": "^1.1",
         "bolt/redactor": "^1.0",
         "bolt/themes": "^3.3",
+        "ivovalchev/edit-this-page": "^1.2",
         "symfony/flex": "^1.6"
     },
     "require-dev": {

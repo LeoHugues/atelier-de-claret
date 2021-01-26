@@ -196,6 +196,9 @@
     "intervention/image": {
         "version": "2.5.1"
     },
+    "ivovalchev/edit-this-page": {
+        "version": "v1.2.1"
+    },
     "jean85/pretty-package-versions": {
         "version": "1.5.1"
     },

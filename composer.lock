@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0065336f83840c45af3024e4aea5b73",
+    "content-hash": "4ed63c71859a1fc1e0f34fcfaf64ddbb",
     "packages": [
         {
             "name": "api-platform/core",
@@ -3374,6 +3374,56 @@
                 "source": "https://github.com/Intervention/image/tree/master"
             },
             "time": "2019-11-02T09:15:47+00:00"
+        },
+        {
+            "name": "ivovalchev/edit-this-page",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/I-Valchev/edit-this-page.git",
+                "reference": "b8dab4be060374306d7fc9b00a6de65401dce61d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/I-Valchev/edit-this-page/zipball/b8dab4be060374306d7fc9b00a6de65401dce61d",
+                "reference": "b8dab4be060374306d7fc9b00a6de65401dce61d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "twig/twig": "^2.12 | ^3.0"
+            },
+            "require-dev": {
+                "bolt/core": "^4.0.0"
+            },
+            "type": "bolt-extension",
+            "extra": {
+                "entrypoint": "IvoValchev\\EditThisPageExtension\\Extension",
+                "screenshots": [
+                    "screenshots/button.png"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "IvoValchev\\EditThisPageExtension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivo Valchev",
+                    "email": "me@ivovalchev.com"
+                }
+            ],
+            "description": "✏️ Bolt 4 extension to add Edit page button for Editors on frontend pages",
+            "support": {
+                "issues": "https://github.com/I-Valchev/edit-this-page/issues",
+                "source": "https://github.com/I-Valchev/edit-this-page/tree/v1.2.1"
+            },
+            "time": "2020-11-14T18:43:55+00:00"
         },
         {
             "name": "justinrainbow/json-schema",

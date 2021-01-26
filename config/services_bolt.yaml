@@ -25,3 +25,6 @@ services:
     Bolt\Redactor\:
         resource: '../vendor/bolt/redactor/src/*'
         exclude: '../vendor/bolt/redactor/src/{Entity,Exception}'
+    IvoValchev\EditThisPageExtension\:
+        resource: '../vendor/ivovalchev/edit-this-page/src/*'
+        exclude: '../vendor/ivovalchev/edit-this-page/src/{Entity,Exception}'
