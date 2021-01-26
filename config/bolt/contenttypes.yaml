@@ -119,6 +119,11 @@ pages:
             postfix: "Ce logo est utilisé par exemple, pour introduire les Pages des trois pôles d'activités (Logo Coworking, Fablab, Formation)."
             localize: true
             group: Général
+        formwidget:
+            label: |
+                Formulaire d'inscription Helloassos
+            type: embed
+            localize: true
         slug:
             type: slug
             uses: title

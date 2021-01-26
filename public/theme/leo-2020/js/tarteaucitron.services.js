@@ -30,6 +30,35 @@ tarteaucitron.services.iframe = {
     }
 };
 
+// generic iframe
+tarteaucitron.services.helloassos = {
+    "key": "helloassos",
+    "type": "api",
+    "name": "Hello Assos (Formulaire)",
+    "uri": "https://www.helloasso.com/cookies",
+    "needConsent": true,
+    "cookies": ["ABTasty", "ABTastyDomainTest", "ABTastySession", "ARRAffinitySameSite", "ai_user"],
+    "js": function () {
+        "use strict";
+        tarteaucitron.fallback(['helloassos_form'], function (x) {
+            var width = x.getAttribute("width"),
+                height = x.getAttribute("height"),
+                url = x.getAttribute("data-url");
+
+            return '<iframe src="' + url + '" width="' + width + '" height="' + height + '" frameborder="0" scrolling="no" allowtransparency allowfullscreen></iframe>';
+        });
+    },
+    "fallback": function () {
+        "use strict";
+        var id = 'iframe';
+        tarteaucitron.fallback(['helloassos_form'], function (elem) {
+            elem.style.width = elem.getAttribute('width') + 'px';
+            elem.style.height = elem.getAttribute('height') + 'px';
+            return tarteaucitron.engage(id);
+        });
+    }
+};
+
 // amplitude
 tarteaucitron.services.amplitude = {
     "key": "amplitude",
@@ -903,6 +932,51 @@ tarteaucitron.services.facebookcomment = {
         "use strict";
         var id = 'facebookcomment';
         tarteaucitron.fallback(['fb-comments'], tarteaucitron.engage(id));
+    }
+};
+
+tarteaucitron.services.facebookpage = {
+    "key": "facebookpage",
+    "type": "social",
+    "name": "Facebook (Page plugin)",
+    "uri": "https://www.facebook.com/policies/cookies/",
+    "needConsent": true,
+    "cookies": ["c_user", "datr", "fr", "sb", "spin", "xs"],
+    "js": function () {
+        "use strict";
+         tarteaucitron.fallback(['facebook-page'], function (x) {
+            var data_src = x.getAttribute("data-src"),
+                data_width = x.getAttribute("data-width"),
+                frame_width = 'width=',
+                data_height = x.getAttribute("data-height"),
+                frame_height = 'height=',
+                fb_frame;
+
+            if (data_src === undefined) {
+                return "";
+            }
+            if (data_width !== undefined) {
+                frame_width += '"' + data_width + '" ';
+            } else {
+                frame_width += '"" ';
+            }
+            if (data_height !== undefined) {
+                frame_height +=  '"' + data_height + '" ';
+            } else {
+                frame_height += '"" ';
+            }
+            fb_frame = '<iframe ' + frame_width + frame_height + 'src="' + data_src + '" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>';
+            return fb_frame;
+        });
+    },
+    "fallback": function () {
+        "use strict";
+        var id = 'facebookpage';
+        tarteaucitron.fallback(['facebook-page'], function (elem) {
+            elem.style.width = elem.getAttribute('width') + 'px';
+            elem.style.height = elem.getAttribute('height') + 'px';
+            return tarteaucitron.engage(id);
+        });
     }
 };
 

@@ -16,8 +16,6 @@
                     {% endif %}
                     <h1 class="title is-size-1 is-size-3-mobile mt-1">{{ record.title }}</h1>
 
-                    {{ record.body }}
-
                     {# If there are repeaters, we should output them. #}
                     {% with { 'record': record, 'common': false, 'repeaters': true, 'blocks': true, 'exclude': ['teaser', 'body', 'image'] } %}
                         {{ block('sub_fields', 'helpers/_fields.twig') }}

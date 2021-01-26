@@ -56,7 +56,7 @@
             "orientation": "bottom", /* Banner position (top - bottom) */
         
             "showAlertSmall": false, /* Show the small banner on bottom right */
-            "cookieslist": false, /* Show the cookie list */
+            "cookieslist": true, /* Show the cookie list */
             
             "showIcon": true, /* Show cookie icon to manage cookies */
             "iconPosition": "BottomRight", /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
@@ -69,7 +69,7 @@
         
             "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
         
-            "removeCredit": false, /* Remove credit link */
+            "removeCredit": true, /* Remove credit link */
             "moreInfoLink": true, /* Show more info link */
             "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
         
@@ -81,11 +81,11 @@
         });
 
         (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
+        (tarteaucitron.job = tarteaucitron.job || []).push('facebookpage');
+        (tarteaucitron.job = tarteaucitron.job || []).push('helloassos');
 
         </script> 
          {% block javascripts %}{% endblock %}
-        
-
     </body>
 </html>
 
