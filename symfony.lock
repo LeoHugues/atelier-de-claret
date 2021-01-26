@@ -25,6 +25,9 @@
     "bobdenotter/configuration-notices": {
         "version": "1.1.8"
     },
+    "bobdenotter/conimex": {
+        "version": "1.3.0"
+    },
     "bobdenotter/sitemap": {
         "version": "1.0.4"
     },
@@ -213,6 +216,9 @@
     },
     "knplabs/knp-menu-bundle": {
         "version": "v3.0.0"
+    },
+    "league/csv": {
+        "version": "9.6.2"
     },
     "league/flysystem": {
         "version": "1.1.3"
