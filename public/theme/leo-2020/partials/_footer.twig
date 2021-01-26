@@ -11,7 +11,8 @@
                 </div>
             </div>
             <div class="level-right">
-            <a href="{{ absolute_url('page/mentions-legales')}}">Mentions Légales</a>
+                {% set parameters = {'contentTypeSlug': 'pages', 'slugOrId': 'mentions-legales'} %}
+                <a href="{{ url('record', parameters, true)}}">Mentions Légales</a>
             </div>
         </nav>
         {{ widgets('footer') }}
