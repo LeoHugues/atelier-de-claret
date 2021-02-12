@@ -1,0 +1,37 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+
+<section class="section section-page">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-8">
+                <article role="article" class="content">
+                    {% if record.logo.path is defined and record.logo is not empty %}
+                        <img 
+                            class="is-128x128 column is-pulled-left is-hidden-mobile pb-1" 
+                            src="{{ record.logo.path }}" 
+                            alt="{{ record.logo.alt|default(record|title) }}"
+                        />
+                    {% endif %}
+                    <h1 class="title is-size-1 is-size-3-mobile mt-1">{{ record.title }}</h1>
+
+                    {# If there are repeaters, we should output them. #}
+                    {% with { 'record': record, 'common': false, 'repeaters': true, 'blocks': true, 'exclude': ['teaser', 'body', 'image'] } %}
+                        {{ block('sub_fields', 'helpers/_fields.twig') }}
+                    {% endwith %}
+
+                    {# Uncomment this if you wish to dump the entire record to the client, for debugging purposes.
+                    {{ dump(record) }}
+                    #}
+                </article>
+            </div>
+            <div class="column content">
+                {% include 'partials/_social_links.twig' %}
+                {% include 'partials/_aside_pined_articles.twig' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

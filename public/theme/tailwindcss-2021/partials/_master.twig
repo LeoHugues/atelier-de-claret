@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="{{ htmllang() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ seo.title() }}</title>
+        {{ seo.metatags() }}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css?family=Bitter|Roboto:400,400i,700" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/base-2021.css') }}" />
+
+        {# Favicon #}
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('image/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{ asset('image/site.webmanifest') }}">
+        <link rel="mask-icon" href="{{ asset('image/safari-pinned-tab.svg')}}" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+    <body class="leading-normal tracking-normal font-sans bg-transparent font-serif">
+        {% include 'partials/_navbar.twig' %}
+
+            {% block main %}
+            {% endblock main %}
+        
+        {% include "partials/_sub_recent_records.twig" %}
+
+        {{ include('partials/_footer.twig') }}
+
+
+        <script defer src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+        <script defer src="{{ asset('js/app.js') }}"></script>
+        
+        <script type="text/javascript">
+        tarteaucitron.init({
+            "privacyUrl": "", /* Privacy policy url */
+        
+            "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+            "cookieName": "tarteaucitron", /* Cookie name */
+        
+            "orientation": "bottom", /* Banner position (top - bottom) */
+        
+            "showAlertSmall": false, /* Show the small banner on bottom right */
+            "cookieslist": true, /* Show the cookie list */
+            
+            "showIcon": true, /* Show cookie icon to manage cookies */
+            "iconPosition": "BottomRight", /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
+        
+            "adblocker": false, /* Show a Warning if an adblocker is detected */
+        
+            "DenyAllCta" : true, /* Show the deny all button */
+            "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+            "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
+        
+            "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+        
+            "removeCredit": true, /* Remove credit link */
+            "moreInfoLink": true, /* Show more info link */
+            "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+        
+            //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for subdomain website */
+        
+            "readmoreLink": "", /* Change the default readmore link pointing to tarteaucitron.io */
+            
+            "mandatory": true /* Show a message about mandatory cookies */
+        });
+
+        (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
+        (tarteaucitron.job = tarteaucitron.job || []).push('facebookpage');
+        (tarteaucitron.job = tarteaucitron.job || []).push('helloassos');
+
+        </script> 
+         {% block javascripts %}{% endblock %}
+    </body>
+</html>
+
+
