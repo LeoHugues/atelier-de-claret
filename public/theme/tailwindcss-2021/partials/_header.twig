@@ -1,6 +1,6 @@
 {% if record.contenttype.slug|default() not in ['showcases', 'entries'] %}
 {% setcontent homepage = "homepage" limit 1 returnsingle %}
-<section class="hero hero-image is-primary is-bold is-medium {% if app.request.get('_route') == "homepage" %}is-large{% endif %}"
+<section class="py-24 mt-10 relative bg-center bg-cover bg-no-repeat" style="background-image: linear-gradient(rgba(0, 0, 0, 0.408), rgba(0, 0, 0, 0.408)), url({{homepage.image.url}})"
     {% if image_header is defined %}
         data-background-image="{{ image_header }}" style="background-image: url({{ image_header }})"
     {% elseif record is defined and record.contenttype not in ['people', 'formations'] and record|image %}
@@ -10,14 +10,19 @@
     {% endif -%}
     >
 
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <h1 class="title">{{ config.get('general/sitename') }}</h1>
+    <div class="container max-w-5xl mb-20 px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div class="flex flex-col items-center w-full">
+            <div class="bg-white p-2 shadow-2xl m-5 rounded-xl">
+                <img class="w-32 rounded-bl-lg" src="{{ homepage.logo|thumbnail(600, 400, fit="crop") }}">
+            </div>
+        </div>
+        <div class="flex flex-col items-center w-full">
+            <h1 class="text-5xl text-white font-serif font-bold">{{ config.get('general/sitename') }}</h1>
             {% if config.get('general/payoff') %}
-            <h2 class="subtitle">{{ config.get('general/payoff') }}</h2>
+            <h2 class="text-3xl text-white font-serif">{{ config.get('general/payoff') }}</h2>
             {% endif %}
         </div>
     </div>
-     {% include 'partials/_header_divider_bottom.twig' %}
+      {% include 'partials/_index_divider_top.twig' %}
 </section>
 {% endif %}

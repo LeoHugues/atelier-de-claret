@@ -1,0 +1,31 @@
+{% for entry in entries %}
+    <article role="article" class="w-full p-5 flex flex-col-reverse md:flex-row">
+        <div class="w-full md:w-3/5 p-3 flex flex-wrap">
+            <h3 class="text-xl text-red font-serif font-bold"><a href="{{ entry|link }}">{{ entry|title }}</a></h3>
+            <div class="flex flex-col relative">
+                <p class="py-3 flex-grow">{{ entry.teaser|excerpt(140) }}</p>
+                {{ include('partials/_sub_taxonomylinks.twig', { record: entry }) }}
+                <span class="mt-1 text-gray-500 text-sm my-2 text-right md:pr-6">{{ entry.publishedAt|date("d M Y")}}</span>
+            </div>
+        </div>
+        <div class="w-full md:w-2/5 pt-5">
+            <figure class="image">
+                <img class="w-full object-cover object-center" src="{{ entry.image|thumbnail(500, 300, fit="crop") }}" alt="{{ entry.image.alt|default(entry|title) }}"/>
+            </figure>
+        </div>
+    </article>
+{% else %}
+    <h2 class="text-2xl font-medium text-black title-font mb-2">{{ __('general.phrase.no-content-found') }}</h2>
+    <p class="leading-relaxed text-black">
+        {{ __("Unfortunately, no content could be found. Try another page, or go to the <a href=\"%paths_root%\">homepage</a>.", {'%paths_root%': path('homepage')} ) }}
+    </p>
+
+    <form method="get" action="{{ path('search') }}" enctype="text/plain" class="py-12">
+        <input class="w-30 bg-gray-100 rounded xl:mr-4 lg:mr-0 sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base py-2 px-4"
+                value="{{ search|default|escape }}" placeholder="{{ __('general.phrase.search-ellipsis') }}"
+                type="search" name="search">
+        <button class="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white gradient border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+            {{ __('action.search') }}
+        </button>
+    </form>
+{% endfor %}

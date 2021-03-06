@@ -67,10 +67,11 @@ module.exports = {
                     '800': '#F63C24',
                     '900': '#DE2209'
                 },
+                'black' : '#363636',
             },
 
             fontFamily: {
-                'sans': ['Roboto'],
+                'sans': ['Roboto, sans-serif'],
                 'serif': ['Bitter'],
             }
         },

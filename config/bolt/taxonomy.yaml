@@ -7,7 +7,7 @@ tags:
     behaves_like: tags
     postfix: "Add some freeform tags. Start a new tag by typing a comma or space."
     allow_spaces: false
-    listing_template: blog-listing.twig #custom template
+    listing_template: listing.twig #custom template
     required: false
 
 categories:
@@ -19,7 +19,7 @@ categories:
     multiple: true
     options: [ actu, événement, film, musique, livre, amour, fun, projet, tutoriel]
     required: false
-    listing_template: blog-listing.twig #custom template
+    listing_template: listing.twig #custom template
 
 groups:
     name: Groups

@@ -90,7 +90,7 @@ record_template: record.twig
 # Note: If you've changed the filename, and your changes do not show up on the
 #         website, be sure to check for a config.yaml file in your themes
 #         folder. If a template is set there, it will override the setting here.
-listing_template: blog-listing.twig
+listing_template: listing.twig
 listing_records: 6
 listing_sort: datepublish DESC
 

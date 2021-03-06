@@ -1,17 +1,25 @@
-        <div class="is-hidden-mobile mt-6">
-        <h1 class="title is-size-3">À la Une</h1>
-            {% setcontent entries = 'articles' limit 2 orderby 'priority' %}
-            {% for entry in entries %}
-                <article role="article" class="media columns">
-                    <div class="media-content column is-7">
-                        <div class="content">
-                            <h3 class="title is-size-6 is-size-5-desktop"><a href="{{ entry|link }}">{{ entry|title|excerpt(35) }}</a></h3>
-                            {{ entry.teaser|excerpt(85) }}
-                        </div>
+<div class="mt-6">
+    {% if entries is defined %}
+            <h1 class="text-3xl text-center lg:text-left font-bold font-serif pl-4 py-3">Articles en lien</h1>
+    {% else %}
+        <h1 class="text-3xl text-center lg:text-left font-bold font-serif pl-4 py-3">À la Une</h1>
+        {% setcontent entries = 'articles' limit 2 orderby 'priority' %}
+    {% endif %}
+    {% for entry in entries %}
+        {% if entry.contenttype in ['articles'] %}
+        <div class="flex flex-wrap md:flex-no-wrap rounded-md transition duration-300 hover:bg-melon">
+            <div class="px-1 p-2 text-sm mx-auto">
+                <a href="{{ entry|link }}">
+                    <div class="float-right w-1/3 ml-2">
+                        <img src="{{ entry.image|thumbnail(150, 150, fit="crop") }}" alt="{{ entry.image.alt|default(entry|title) }}"/>
                     </div>
-                    <div class="media-right column">
-                        <img src="{{ entry.image|thumbnail(300, 300, fit="crop") }}" alt="{{ entry.image.alt|default(entry|title) }}"/>
-                    </div>
-                </article>
-            {% endfor %}
+                    <h3 class="text-md my-1 font-bold font-serif text-red">{{ entry|title|excerpt(35) }}</h3>
+                </a>
+                <p>
+                    {{ entry.teaser|excerpt(85) }}
+                </p>
+            </div>
         </div>
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,22 +1,25 @@
 {% for ct in config.get('contenttypes')|filter(ct => not ct.viewless and not ct.singleton) %}
 
-    {% setcontent records = ct.slug latest limit 3 %}
+{% if ct.slug != 'pages' %}
+    {% setcontent records = ct.slug latest limit 5 %}
 
-    <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">{{ ct.name|upper }}</h2>
+    <div class="lg:w-1/4 md:w-1/2 w-full p-4 relative">
+        <h2 class="font-bold text-white tracking-widest text-sm mb-3">{% if ct.slug == 'people' %} MEMBRES {% else %}{{ ct.name|upper }}{% endif %}</h2>
 
         {% if records|length %}
-            <nav class="list-none mb-10">
+            <nav class="list-none mb-12">
                 <ul>
                     {% for record in records %}
-                        <li><a class"hover:underline" href="{{ record|link }}">{{ record|title }}</a></li>
+                        <li><a class="hover:underline text-melon" href="{{ record|link }}">{{ record|title|excerpt('25')}}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
-            <p><a class="no-underline hover:underline" href="{{ path('listing', {'contentTypeSlug': ct.slug}) }}">{{ __('contenttypes.generic.overview',{'%contenttypes%': ct.name}) }} &raquo;</a></p>
+            <p class="w-48 py-2 mx-auto border-2 border-melon text-melon rounded-md text-center hover:shadow-xl absolute inset-x-0 bottom-0 hover:bg-melon hover:text-pink">
+                <a class="no-underline" href="{{ path('listing', {'contentTypeSlug': ct.slug}) }}">Tout voir ...</a>
+            </p>
         {% else %}
             <p>{{ __('contenttypes.generic.no-recent', {'%contenttype%': ct.slug}) }}</p>
         {% endif %}
-
     </div>
+{% endif %}
 {% endfor %}

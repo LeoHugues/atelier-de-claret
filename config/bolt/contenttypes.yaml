@@ -12,10 +12,11 @@ homepage:
             type: image
             label: "Image d'entête"
             localize: true
+            group: Général
         title:
             type: text
             class: large
-            group: content
+            group: Général
             localize: true
             label: Titre
             postfix: |
@@ -27,20 +28,22 @@ homepage:
             type: image
             label: "Logo de l'atelier"
             localize: true
-        introduction:
+            group: Général
+        teaser:
+            type: redactor
+            localize: true
+            group: Général
+            postfix: |
+                    Phrase d'accroche utilisé pour le référencement ou pour partager la page sur les réseaux sociaux
+        section_introduction:
             type: article
-            localize: true
-        video:
-            type: embed
-            localize: true
-            default:
-                url: "https://www.youtube.com/embed/oO9cBl6FXg4"
-                width: "640"
-                height: "360"
-        body:
+            label: Contenu
+            group: Section introduction
+        section_presentation:
             type: article
             localize: true
             label: Contenu
+            group: Section présentation
         sponsors:
             type: collection
             label: Partenaires
@@ -72,7 +75,6 @@ homepage:
             group: "Paramètres SEO"
             localize: true
     viewless: false
-    taxonomy: [ categories, tags, foobars ]
     locales: fr
     singleton: true
     icon_many: "fa:home"
@@ -94,6 +96,12 @@ pages:
     title_format: '{title}'
     excerpt_format: '{content}'
     fields:
+        section_introduction:
+            type: article
+            localize: true
+            group: Contenu
+            label: |
+                Section d'introduction avec le Block Facebook sur le côté (WISIWIG)      
         content:
             type: article
             localize: true
@@ -113,17 +121,6 @@ pages:
                 Image d'entête
             localize: true
             group: Général
-        logo:
-            type: image
-            label: Logo de la page
-            postfix: "Ce logo est utilisé par exemple, pour introduire les Pages des trois pôles d'activités (Logo Coworking, Fablab, Formation)."
-            localize: true
-            group: Général
-        formwidget:
-            label: |
-                Formulaire d'inscription Helloassos
-            type: embed
-            localize: true
         slug:
             type: slug
             uses: title
@@ -172,7 +169,7 @@ articles:
             type: image
             upload: entries
             localize: true
-        body:
+        content:
             type: article
             localize: true
         slug:
@@ -206,11 +203,11 @@ articles:
             required: false
     taxonomy: [ categories, tags, groups ]
     record_template: article.twig
-    listing_template: blog-listing.twig
-    listing_records: 10
+    listing_template: listing.twig
+    listing_records: 5
     default_status: published
     order: -publishedAt
-    records_per_page: 10
+    records_per_page: 5
     icon_many: "fa:file-alt"
     icon_one: "fa:file-alt"
     locales: ['fr']
@@ -231,28 +228,14 @@ people:
             fixture_format: '{name}'
             localize: true
         description:
+            label: Profession
             type: text
-            variant: inline
-            postfix: This person's job description, title or somesuch
-            fixture_format: '{jobTitle}'
-            localize: true
-        email:
-            type: text
-            variant: inline
-            fixture_format: '{safeEmail}'
             localize: true
         image:
             type: image
             localize: true
         content:
-            type: redactor
-            localize: true
-        contentlink:
-            type: text
-            label: Link
-            placeholder: 'contentType/slug or https://example.org/'
-            postfix: "Use this to add a link for this Person. This could either be an 'internal' link like <tt>page//about</tt>, if you use a contentType/slug combination. Otherwise use a proper URL, like `https://example.org`. If left blank, it'll default to the internal link to this Record's detail page."
-            fixture_format: '{url}'
+            type: article
             localize: true
         slug:
             type: slug

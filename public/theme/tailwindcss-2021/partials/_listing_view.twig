@@ -1,0 +1,51 @@
+<section class="text-gray w-full">
+    <div class="container py-12 mx-auto flex flex-wrap max-w-5xl">
+        {# If used for listing a taxonomy, we add a heading #}
+        {% if taxonomy is defined %}
+        <div class="container pb-0">
+            <h1 class="text-4xl lg:text-5xl text-center md:text-left font-bold font-serif py-3 pl-5">
+                {{ __('general.phrase.overview-for', {'%slug%': taxonomy.options[slug]|default(slug) }) }}
+            </h1>
+        </div>
+        {% elseif contenttype.name is defined %}
+        <div class="container pb-0 mx-auto">
+            <h1 class="text-4xl lg:text-5xl text-center md:text-left font-bold font-serif py-3  pl-5">
+                {{ contenttype.name }}
+            </h1>
+        </div>
+        {% else %}
+        <div class="container pb-0 mx-auto">
+            <h1 class="text-4xl lg:text-5xl text-center font-bold font-serif py-6  pl-5">
+                Le Blog
+            </h1>
+        </div>
+        {% endif %}
+
+        {% if search is defined %}
+            <div class="container pr-5 pb-0 mx-auto">
+                <h1>
+                    {% if search is not empty %}
+                        {{ __('general.phrase.search-results-for-variable', { '%search%': search }) }}
+                    {% else %}
+                        {{ __('general.phrase.search') }}
+                    {% endif %}
+                </h1>
+            </div>
+        {% endif %}
+        <div class="w-full md:w-2/3">
+        {% if records is defined %}
+            {% include 'partials/_listing_entries.twig' with {'entries': records} %}
+            {{ pager(records, template = 'helpers/_pager_tailwind_2021.twig') }}
+        {% else %}
+            {% setcontent records = 'articles' latest limit 4 %}
+            {% include 'partials/_listing_entries.twig' with {'entries': records} %}
+        {% endif %}
+        </div>
+        <div class="w-full md:w-1/3">
+            {% setcontent entries = 'articles' limit 2 orderby 'priority' %}
+            {% include 'partials/_search_widget.twig' %}
+            {% include 'partials/_aside_pined_articles.twig' with {entries: entries} %}
+            {% include 'partials/_aside_taxonomylinks.twig' %}
+        </div>
+    </div>
+</section>

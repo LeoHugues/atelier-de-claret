@@ -9,8 +9,10 @@
         <link href="https://fonts.googleapis.com/css?family=Bitter|Roboto:400,400i,700" rel="stylesheet">
 
 
+        <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/base-2021.css') }}" />
+        <link rel="stylesheet" href="{{ asset('js/css/tarteaucitron.css') }}" />
 
         {# Favicon #}
 
@@ -23,20 +25,23 @@
         <meta name="theme-color" content="#ffffff">
 
     </head>
-    <body class="leading-normal tracking-normal font-sans bg-transparent font-serif">
+    <body class="leading-normal tracking-normal font-sans bg-transparent font-sans text-black">
         {% include 'partials/_navbar.twig' %}
+        {% include 'partials/_header.twig' %}
 
             {% block main %}
             {% endblock main %}
         
-        {% include "partials/_sub_recent_records.twig" %}
-
         {{ include('partials/_footer.twig') }}
 
-
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+        <script defer src="{{ asset('js/brands.min.js') }}"></script>
+        <script defer src="{{ asset('js/fontawesome.min.js') }}"></script>
         <script defer src="{{ asset('js/app.js') }}"></script>
         
+        <script type="text/javascript" src="{{ asset('js/tarteaucitron.js') }}"></script>
+
         <script type="text/javascript">
         tarteaucitron.init({
             "privacyUrl": "", /* Privacy policy url */
@@ -71,9 +76,7 @@
             "mandatory": true /* Show a message about mandatory cookies */
         });
 
-        (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
         (tarteaucitron.job = tarteaucitron.job || []).push('facebookpage');
-        (tarteaucitron.job = tarteaucitron.job || []).push('helloassos');
 
         </script> 
          {% block javascripts %}{% endblock %}

@@ -1,19 +1,21 @@
-<h1 class="title is-size-3">Catégories</h1>
+<div class="p-5">
+    <h1 class="text-3xl text-center lg:text-left font-bold font-serif my-8">Catégories</h1>
 
-<div class="tags">
-    {% for category in config.get('taxonomies/categories/options') %}
-        <span class="label">
-            <a class="tag is-link" href="/categories/{{ category|slug }}">{{ category }}</a>
-        </span>
-    {% endfor %}
-</div>
+    <div class="flex flex-wrap">
+        {% for category in config.get('taxonomies/categories/options') %}
+            <span class="bg-red hover:bg-red-400  text-white text-center font-bold p-1 m-1 rounded-md text-xs flex-grow">
+                <a class="tag is-link" href="/categories/{{ category|slug }}">{{ category }}</a>
+            </span>
+        {% endfor %}
+    </div>
 
-<h1 class="title is-size-3">Tags</h1>
+    <h1 class="text-3xl text-center lg:text-left font-bold font-serif my-8">Tags</h1>
 
-<div class="tags">
-    {% for tag in tag_cloud() %}
-        <span class="label">
-            <a class="tag is-primary" href="/tag/{{ tag.slug }}">#{{ tag.name }} ({{ tag.count }})</a>
-        </span>
-    {% endfor %}
+    <div class="flex flex-wrap">
+        {% for tag in tag_cloud() %}
+            <span class="bg-pink hover:bg-pink-400  text-white text-center font-bold p-1 m-1 rounded-md text-xs flex-grow">
+                <a class="tag is-primary" href="/tag/{{ tag.slug }}">#{{ tag.name }} ({{ tag.count }})</a>
+            </span>
+        {% endfor %}
+    </div>
 </div>

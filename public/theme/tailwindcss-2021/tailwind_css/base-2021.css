@@ -1,8 +1,4 @@
 
-html {
-    font-size: 18px;
-}
-
 /* Default grid, as used by the Article field type */
 .article-grid {
     display: grid;
@@ -79,27 +75,6 @@ html {
             list-style-position: inside;
             font-size: clamp(1.1rem, 1.1vw, 1.6rem);
         }
-        .article h1 {
-            font-size: clamp(1.875rem, 2.5vw, 2.25rem)
-        }
-        .article h2 {
-            font-size: clamp(1.5rem, 2vw, 1.875rem)
-        }
-        .article h3 {
-            font-size: clamp(1.25rem, 1.75vw, 1.5rem);
-            font-weight: 700;
-        }
-        .article h4 {
-            font-size: clamp(1.125rem, 1.5vw, 1.25rem)
-        }
-        .article h5 {
-            font-size: 1rem;
-            font-weight: 700;
-        }
-        .article h6 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
 
         .article blockquote>p {
             border-left-width: 4px;
@@ -115,3 +90,21 @@ html {
 }
 
 /* Base grid for "Article" powered Fields */
+
+.gradient-primary {
+    background: rgb(105,72,115);
+    background: linear-gradient(90deg, rgba(105,72,115,1) 0%, rgba(171,58,130,1) 33%, rgba(194,53,135,1) 58%);
+}
+.gradient-primary-01 {
+    background-image: linear-gradient(to right top, #694873, #7d477d, #934484, #aa3e87, #c23587);
+}
+
+.gradient-success {
+    background: rgb(114,161,229);
+    background: linear-gradient(148deg, rgba(114,161,229,1) 0%, rgba(140,167,220,1) 31%, rgba(223,185,193,1) 98%, rgba(252,191,183,1) 100%);
+}
+
+.gradient-info {
+    background: rgb(252,191,183);
+    background: linear-gradient(145deg, rgba(252,191,183,1) 16%, rgba(231,147,146,1) 100%, rgba(220,124,126,1) 100%, rgba(196,74,84,1) 100%);
+}

@@ -7,77 +7,8 @@
 
 {% block main %}
 
-<section class="section section-record">
-    <div class="container">
-        <div class="columns is-multiline">
-            <div class="column is-10 tabs is-small is-toggle mb-0 is-fullwidth">
-                <ul>
-                    {% setcontent machines = 'machines' %}
-                    {% for machine in machines %}
-                        <li class="{% if record.slug == machine.slug %}is-active{% endif %}">
-                            <a>{{machine.title}}</a>                        
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="column is-10 tabs-content">
-                {% for machine in machines %}
-                    <div class="tab-content {% if record.slug == machine.slug %}is-active{% endif %} mx-5">
-                        <div class="columns is-multiline">
-                            <div class="column pb-0">
-                                <figure class="image">
-                                    <img class="" src="{{ machine.image.path }}" alt="{{ machine.logo.alt|default(machine|title) }}"/>
-                                </figure>
-                            </div>
-                            <div class="is-three-fifths column mt-5 box mb-0 pb-0">
-                                <div class="is-centered">
-                                    <article role="article" class="content">
-                                        <h1 class="title is-size-1 is-size-3-mobile">{{ machine|title }}</h1>
-                                        <p>{{ machine.content }}</p>
-                                    </article>
-                                </div>
-                            </div>
-                            <div class="column is-full pt-0">
-                                <div class="columns content is-multiline">
-                                    {% for feature in machine.features %}
-                                    <div class="column has-text-centered bg-blob is-one-fifth px-2">
-                                        <div class="column mt-6 px-3">
-                                            <h4 class="mt-5 mb-2">{{ feature.title }}</h4>
-                                            <h5 class="has-text-weight-large has-text-light px-3">{{ feature.value.value }}</h5>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>           
-                {% endfor %}
-            </div>
-            <div class="column is-full">
-                    {% include 'partials/_social_links.twig' %}
-            </div>
-        </div>
-    </div>
+<section class="section section-latest-entries min-h-screen">
+    {% include 'partials/_tabs_machines.twig' %}
 </section>
 
 {% endblock main %}
-
-{% block javascripts %}
-    <script>
-     $('.tabs').each(function(index) {
-      var $tabParent = $(this);
-      var $tabs = $tabParent.find('li');
-      var $contents = $tabParent.next('.tabs-content').find('.tab-content');
-
-      $tabs.click(function() {
-        var curIndex = $(this).index();
-        // toggle tabs
-        $tabs.removeClass('is-active');
-        $tabs.eq(curIndex).addClass('is-active');
-        // toggle contents
-        $contents.removeClass('is-active');
-        $contents.eq(curIndex).addClass('is-active');
-      });
-    });
-    </script>
-{% endblock javascripts %}

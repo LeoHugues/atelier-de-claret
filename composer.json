@@ -65,8 +65,7 @@
         "auto-scripts": {
             "bolt:copy-assets --ansi": "symfony-cmd",
             "cache:clear --no-warmup --ansi": "symfony-cmd",
-            "assets:install --ansi": "symfony-cmd",
-            "security-checker security:check": "script"
+            "assets:install --ansi": "symfony-cmd"
         },
         "lint": "php vendor/bin/ecs check --no-progress-bar --no-interaction",
         "lint:fix": "php vendor/bin/ecs check --no-progress-bar --no-interaction --fix",

@@ -1,290 +1,61 @@
 {% extends 'partials/_master.twig' %}
 
 {% block main %}
-  <section id="home" class="pt-24 mt-10 relative bg-center bg-cover bg-no-repeat" style="background-image: linear-gradient(rgba(0, 0, 0, 0.408), rgba(0, 0, 0, 0.408)), url({{homepage.image.url}})" data-scroll-section>
-    <div class="container mb-20 px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-      <div class="flex flex-col items-center w-full">
-        <img class="w-1/3" style="border-radius: 1.5rem;" src="{{ homepage.image|thumbnail(600, 400, fit="crop") }}">
-      </div>
-      <div class="flex flex-col justify-center items-start text-center">
-        <p class="leading-normal font-semibold text-2xl mb-8 text-white">kiwi</p>
-      </div>
-    </div>
-      {% include 'partials/_index_divider_top.twig' %}
-  </section>
-
-<section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-two-thirds">
-
-                {% setcontent homepage = "homepage" limit 1 returnsingle %}
-                {% if homepage %}
-                <div class="content">
-                    <img 
-                        class="is-128x128 column is-pulled-left is-hidden-mobile" 
-                        src="{{ homepage.logo.path }}" 
-                        alt="{{ homepage.logo.alt|default(homepage|title) }}"
-                    />
-                    
-                    <h2 class="title header is-size-1 is-size-3-mobile is-0-mobile">{{ homepage.title }}</h2>
-                    {{ homepage.introduction }}
-                    <div    class="youtube_player py-6 has-ratio" 
-                            video-url="{{ homepage.video.url }}" 
-                            video-width="{{ homepage.video.width }}" 
-                            video-height="{{ homepage.video.height }}" 
-                            showinfo="true">
-                    </div>
-                    {{ homepage.body }}
-
-                    {% include 'partials/_record_meta.twig' with {'record': homepage } %}
+<section class="section pb-32 pt-16">
+    <div class="container mx-auto flex max-w-5xl">
+            {% setcontent homepage = "homepage" limit 1 returnsingle %}
+            {% if homepage %}
+                <div class="lg:w-2/3">
+                    {{ homepage.section_introduction }}
                 </div>
-                {% else %}
-                    {# Remove this include if you don't need it anymore. #}
-                    {{ include('partials/_no_content.twig') }}
-                {% endif %}
-            </div>
-            <div class="column content">
-            <!-- Your share button code -->
+            {% else %}
+                {# Remove this include if you don't need it anymore. #}
+                {{ include('partials/_no_content.twig') }}
+            {% endif %}
+            <div class="w-1/3 hidden lg:block">
+                <!-- Your share button code -->
                 {% include 'partials/_social_links.twig' %}
                 {% include 'partials/_aside_pined_articles.twig' %}
                 {% include 'partials/_aside_facebook_page.twig' %}
-
             </div>
-        </div>
     </div>
 </section>
 
 {# Pages section #}
-
-
-<section class="section section-pages hero is-success">
- {% include 'partials/_index_divider_top.twig' %}
- <div class="container">
-        <div class="column my-6 content">
-            <h1 class="title is-size-1 is-size-3-mobile has-text-centered">Les trois pôles d'activités</h1> 
-        </div>
-        <div class="columns mb-6">
-            {% setcontent coworking = 'page/coworking'%}
-            <div class="column">
-                <div class="card">
-                    <div class="card-image">
-                        <figure class="image is-3by2">
-                            {{ coworking.image|showimage(480, 320) }}
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-left is-hidden-mobile">
-                                <figure class="image is-96x96">
-                                    <img src="{{ coworking.logo.path }}" alt="{{ coworking.logo.alt|default(coworking|title) }}"/>
-                                </figure>
-                            </div>
-                            <div class="media-content content">
-                                    <h3 class="mt-3">
-                                        <a href="{{ coworking|link }}">{{ coworking|title }}</a>
-                                    </h3>
-                                <p class="is-6 is-capitalized has-text-weight-medium ">
-                                    Espace de travail partagé
-                                </p>
-                            </div>
-                        </div>
-                        <div class="content">
-                            {{ coworking|excerpt(150) }}
-                        </div>
-                        <a class="button is-link is-medium is-outlined" href="{{ coworking|link }}">
-                            {{ __('general.phrase.read-more') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            {% setcontent fablab = 'page/fablab'%}
-            <div class="column">
-                <div class="card">
-                    <div class="card-image">
-                        <figure class="image is-3by2">
-                            {{ fablab.image|showimage(480, 320) }}
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-left is-hidden-mobile">
-                                <figure class="image is-96x96">
-                                    <img src="{{ fablab.logo.path }}" alt="{{ fablab.logo.alt|default(fablab|title) }}"/>
-                                </figure>
-                            </div>
-                            <div class="media-content content">
-                                <h3 class="mt-3"><a href="{{ fablab|link }}">{{ fablab|title }}</a></h3>
-                                <p class="is-6 is-capitalized has-text-weight-medium">
-                                    Fabrication Numérique
-                                </p>
-                            </div>
-                        </div>
-                        <div class="content">
-                            {{ fablab|excerpt(150) }}
-                        </div>
-                        <a class="button is-link is-medium is-outlined" href="{{ fablab|link }}">
-                            {{ __('general.phrase.read-more') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            {% setcontent formation = 'page/formation'%}
-            <div class="column">
-                <div class="card">
-                    <div class="card-image">
-                        <figure class="image is-3by2">
-                            {{ formation.image|showimage(480, 320) }}
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-left is-hidden-mobile">
-                                <figure class="image is-96x96">
-                                    <img src="{{ formation.logo.path }}" alt="{{ formation.logo.alt|default(formation|title) }}"/>
-                                </figure>
-                            </div>
-                            <div class="media-content content">
-                                <h3 class="mt-3"><a href="{{ formation|link }}">{{ formation|title }}</a></h3>
-                                <p class="is-6 is-capitalized has-text-weight-medium">
-                                    Atelier et formation
-                                </p>                            
-                            </div>
-                        </div>
-                        <div class="content">
-                            {{ formation|excerpt(150) }}
-                        </div>
-                        <a class="button is-link is-medium is-outlined" href="{{ formation|link }}">
-                            {{ __('general.phrase.read-more') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-     {% include 'partials/_pages_divider_bottom.twig' %}
-</section>
-
+    {{ homepage.section_presentation }}
 
 {# Latest entries #}
-
-<section class="section section-latest-entries">
-
-    <div class="container">
-            <div class="column my-5 content">
-                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">L'Actualités</h2>
-            </div>
-        {% setcontent entries = 'articles' latest limit 3 %}
-        {% for entry in entries %}
-            <article role="article" class="media columns">
-                <div class="media-content column is-7">
-                    <div class="content">
-                        <h3><a href="{{ entry|link }}">{{ entry|title }}</a></h3>
-                        {{ entry.teaser }}
-                        {% include 'partials/_record_meta.twig' with {'extended': true, 'record': entry} %}
-                    </div>
-                </div>
-                <div class="media-right column">
-                    <figure class="image">
-                        <img src="{{ entry.image|thumbnail(500, 300, fit="crop") }}" alt="{{ entry.image.alt|default(entry|title) }}"/>
-                    </figure>
-                </div>
-            </article>
-        {% else %}
-            <p>{{ __("general.phrase.no-content-found") }}</p>
-        {% endfor %}
-        <div class="buttons has-addons is-right">
-            <a class="button is-primary" href="{{ path('listing', {'contentTypeSlug': 'articles'}) }}">Read more <span class="is-hidden"> Entries</span></a>
-        </div>
-    </div>
-</section>
+	{% include 'partials/_listing_view.twig'%}
 
 {# Sponsors #}
 
-<section class="section section-sponsors hero is-info">
-{% include 'partials/_sponsors_divider_bottom.twig' %}
-    <div class="container">
-            <div class="column my-5 content">
-                <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Nos Partenaires</h2>
-            </div>
-        <div class="bd-partner-sponsors">
+<section class="section gradient-info relative">
+ {% include 'partials/_sponsors_divider_bottom.twig' %} 
+    <div class="container max-w-5xl mx-auto pb-16">
+        <div class="w-full my-16">
+            <h2 class="text-5xl text-center font-serif font-bold">Nos Partenaires</h2>
+        </div>
+        <div class="w-full flex flex-wrap items-center justify-center">
         {% for sponsor in homepage.sponsors %}
-            <div class="bd-partner-sponsor">
-                <a class="bd-sponsor-item" href="{{ sponsor.link }}" target="_blank">
-                    <img src="{{ sponsor.logo.path }}" alt="{{ sponsor.logo.alt|default(homepage|title) }}"/>
+            <div class="p-2 w-36 md:w-40">
+                <a href="{{ sponsor.link }}">
+                    <img src="{{ sponsor.logo.url }}" />
                 </a>
             </div>
-        {% else %}
-            <p>{{ __("general.phrase.no-content-found") }}</p>
         {% endfor %}
         </div>
     </div>
 {% include 'partials/_sponsors_divider_top.twig' %}
 </section>
 
-<section class="section">
-
-    <div class="container px-6">
-        <div class="column my-5 content">
-            <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Les Irréductibles</h2>
-        </div>
-        <section class="section is-clipped px-2">
-            <!-- Start Carousel -->
-            <div id="people-carousel" class="carousel">
-                {% setcontent peoples = 'people' where {groups: 'Irreductibles'}%}
-                {% for people in peoples %}
-                    <div class="px-5 item-{{ loop.index }}">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 is-covered">
-                                    <img src="{{ people.image.path }}" alt="{{ people.image.alt|default(people|title) }}"/>
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-content content">
-                                        <h3 class="mt-3">
-                                            <a href="{{ people|link }}">{{ people.name}}</a>
-                                        </h3>
-                                        <p class="subtitle is-6">{{ people.description}}</p>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    {{ people.content|excerpt(90) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+<section class="section pb-16">
+    <div class="w-full my-16">
+        <h2 class="text-5xl text-center font-serif font-bold">Les Irreductibles</h2>
     </div>
+        {% setcontent peoples = 'people' where {groups: 'Irreductibles'}%}
+        {% include 'partials/_carousel_people.twig' with {'peoples': peoples} %}
 </section>
 
+
+
 {% endblock main %}
-
-{% block javascripts %}
-    <script>
-        bulmaCarousel.attach('#people-carousel', {
-            slidesToScroll: 1,
-            slidesToShow: 4,
-            loop: 1,
-            breakpoints: [{ 
-                changePoint: 480, 
-                slidesToShow: 1, 
-                slidesToScroll: 1 }, 
-                { 
-                changePoint: 640, 
-                slidesToShow: 2, 
-                slidesToScroll: 1 }, 
-                { 
-                changePoint: 768, 
-                slidesToShow: 2, 
-                slidesToScroll: 1 
-            } ]
-
-        });
-    </script>
-{% endblock javascripts %}

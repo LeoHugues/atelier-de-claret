@@ -1,0 +1,13 @@
+<div class="text-sm flex flex-wrap">
+    {% for type, taxonomies in record|taxonomies %}
+        {% for taxonomy in taxonomies %}
+        <a href="{{ taxonomy|link }}" 
+            {% if type == "tags" %}
+                class="text-pink font-bold text-xs px-1"
+            {% else %}
+                class="text-red font-bold rounded-md text-xs px-1"
+            {% endif %}
+        >#{{ taxonomy.name }}</a>
+        {% endfor %}
+    {% endfor %}
+</div>

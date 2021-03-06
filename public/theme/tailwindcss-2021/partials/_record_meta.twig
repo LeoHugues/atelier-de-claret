@@ -1,4 +1,4 @@
-<p class="meta is-hidden-touch">
+<p class="meta">
     {% if record.link() and (record.link != global.request.server.get('REQUEST_URI')) %}
     <a href="{{ record.link() }}" class="button is-link {% if extended|default() %}is-outlined{% endif %}" target="_blank">
         {{ __('general.phrase.read-more') }}

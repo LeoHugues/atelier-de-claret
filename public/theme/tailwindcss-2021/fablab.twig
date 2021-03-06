@@ -1,171 +1,36 @@
 {% extends 'partials/_master.twig' %}
 
 {% block main %}
-
-<section class="section section-page">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-8">
-                <article role="article" class="content">
-                    {% if record.logo.path is defined and record.logo is not empty %}
-                        <img 
-                            class="is-128x128 column is-pulled-left is-hidden-mobile pb-1" 
-                            src="{{ record.logo.path }}" 
-                            alt="{{ record.logo.alt|default(record|title) }}"
-                        />
-                    {% endif %}
-                    <h1 class="title is-size-1 is-size-3-mobile mt-1">{{ record.title }}</h1>
-
-                    {{ record.body }}
-
-                    {# If there are repeaters, we should output them. #}
-                    {% with { 'record': record, 'common': false, 'repeaters': true, 'blocks': true, 'exclude': ['teaser', 'body', 'image'] } %}
-                        {{ block('sub_fields', 'helpers/_fields.twig') }}
-                    {% endwith %}
-                </article>
-            </div>
-            <div class="column content">
-                {% include 'partials/_social_links.twig' %}
-                {% include 'partials/_aside_pined_articles.twig' %}
-                {% include 'partials/_aside_facebook_page.twig' %}
-            </div>
+<section class="section pb-32 pt-16">
+    <div class="container mx-auto flex flex-wrap max-w-5xl">
+        <div class="lg:w-2/3">
+            {{record.section_introduction}}
         </div>
+        <div class="mx-auto mt-6 p-6 lg:mt-0 lg:p-0 lg:w-1/3">
+            {% include 'partials/_social_links.twig' %}
+            {% include 'partials/_aside_pined_articles.twig' %}
+            {% include 'partials/_aside_facebook_page.twig' %}
+        </div>
+        
     </div>
 </section>
 
-<section class="section is-info">
+{{record.content}}
+
+<section class="section gradient-info">
     {% include 'partials/_machine_features_divider_bottom.twig' %}
-    <div class="container px-6">
-        <div class="column my-5 content">
-            <h2 class="title is-size-1 is-size-3-mobile has-text-centered">Les Makers</h2>
-        </div>
-        <section class="section is-clipped px-2">
-            <!-- Start Carousel -->
-            <div id="people-carousel" class="carousel">
-                {% setcontent peoples = 'people' where {groups: 'Makers'}%}
-                {% for people in peoples %}
-                    <div class="px-5 item-{{ loop.index }}">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-4by3 is-covered">
-                                    <img src="{{ people.image.path }}" alt="{{ people.image.alt|default(people|title) }}"/>
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-content content">
-                                        <h3 class="mt-3">
-                                            <a href="{{ people|link }}">{{ people.name}}</a>
-                                        </h3>
-                                        <p class="subtitle is-6">{{ people.description}}</p>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    {{ people.content|excerpt(90) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+
+    <div class="w-full my-16">
+        <h1 class="text-4xl md:text-5xl text-center text-white font-serif font-bold">Les Makers</h1>
     </div>
+    {% setcontent peoples = 'people' where {groups: 'Makers'}%}
+    {% include 'partials/_carousel_people.twig' with {'peoples': peoples} %}
+
     {% include 'partials/_pages_divider_bottom.twig' %}
 </section>
 
-<section class="section">
-    <div class="container">
-        <div class="mt-5 columns is-multiline">
-            <div class="column is-12 content has-text-centered title">
-                <h1>Les machines du Lab</h1>
-            </div>
-            <div class="column is-10 tabs is-small is-toggle mb-0 is-fullwidth">
-                <ul>
-                    {% setcontent machines = 'machines' %}
-                    {% for machine in machines %}
-                        <li class="{% if record.slug == machine.slug %}is-active{% endif %}">
-                            <a>{{machine.title}}</a>                        
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="column is-10 tabs-content">
-                {% set isFirstTab = true %}
-                {% for machine in machines %}
-                    <div class="tab-content {% if isFirstTab %} {% set isFirstTab = false %} is-active{% endif %} mx-5">
-                        <div class="columns is-multiline">
-                            <div class="column pb-0">
-                                <figure class="image">
-                                    <img class="" src="{{ machine.image.path }}" alt="{{ machine.logo.alt|default(machine|title) }}"/>
-                                </figure>
-                            </div>
-                            <div class="is-three-fifths column mt-5 box mb-0 pb-0">
-                                <div class="is-centered">
-                                    <article role="article" class="content">
-                                        <h1 class="title is-size-1 is-size-3-mobile">{{ machine|title }}</h1>
-                                        <p>{{ machine.content }}</p>
-                                    </article>
-                                </div>
-                            </div>
-                            <div class="column is-full pt-0">
-                                <div class="columns content is-multiline">
-                                    {% for feature in machine.features %}
-                                    <div class="column has-text-centered bg-blob is-one-fifth px-2">
-                                        <div class="column mt-6 px-3">
-                                            <h4 class="mt-5 mb-2">{{ feature.title }}</h4>
-                                            <h5 class="has-text-weight-large has-text-light px-3">{{ feature.value.value }}</h5>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>           
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+<section class="section section-latest-entries min-h-screen">
+    {% include 'partials/_tabs_machines.twig' %}
 </section>
 
 {% endblock main %}
-
-
-{% block javascripts %}
-    <script>
-    bulmaCarousel.attach('#people-carousel', {
-        slidesToScroll: 1,
-        slidesToShow: 4,
-        loop: 1,
-        breakpoints: [{ 
-            changePoint: 480, 
-            slidesToShow: 1, 
-            slidesToScroll: 1 }, 
-            { 
-            changePoint: 640, 
-            slidesToShow: 2, 
-            slidesToScroll: 1 }, 
-            { 
-            changePoint: 768, 
-            slidesToShow: 2, 
-            slidesToScroll: 1 
-        } ]
-
-    });
-
-    $('.tabs').each(function(index) {
-      var $tabParent = $(this);
-      var $tabs = $tabParent.find('li');
-      var $contents = $tabParent.next('.tabs-content').find('.tab-content');
-
-      $tabs.click(function() {
-        var curIndex = $(this).index();
-        // toggle tabs
-        $tabs.removeClass('is-active');
-        $tabs.eq(curIndex).addClass('is-active');
-        // toggle contents
-        $contents.removeClass('is-active');
-        $contents.eq(curIndex).addClass('is-active');
-      });
-    });
-    </script>
-{% endblock javascripts %}

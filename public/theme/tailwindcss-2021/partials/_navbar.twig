@@ -1,11 +1,14 @@
 <!--Nav-->
-<div id="header" class="text-white fixed top-0 w-full z-30 bg-pink font-sans">
-  <div x-data="{ open: false }"
+<div id="header" class="text-white fixed top-0 w-full z-30 gradient-primary font-sans">
+  <div x-data="{ open: false, isMobile: true }"
     class="flex flex-col max-w-screen-xl px-4 mx-auto lg:items-center lg:justify-between lg:flex-row lg:px-4">
     <div class="py-0 flex flex-row items-center justify-between">
-      <a href="{{ path('homepage') }}{{ htmllang() }}" class="relative font-serif font-bold text-lg xl:text-2xl focus:outline-none focus:shadow-outline">
+      <a href="{{ path('homepage') }}{{ htmllang() }}" class="relative font-serif font-bold text-2xl py-2 lg:py-0 focus:outline-none focus:shadow-outline">
         {% include 'img/logo.svg' %}
+
+        <label class="align-middle">
         {{ config.get('general/sitename') }}
+        </label>
       </a>
       <button class="lg:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
         <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
