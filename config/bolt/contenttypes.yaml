@@ -157,21 +157,24 @@ articles:
         title:
             type: text
             class: large
-            group: Entry
             localize: true
+            group: Général
         teaser:
             type: textarea
             postfix: |
                 A text-only version of the content, that can be used to "tease"
                 the content when it's used in listing pages or search results.
             localize: true
+            group: Général
         image:
             type: image
             upload: entries
             localize: true
+            group: Général
         content:
             type: article
             localize: true
+            group: WISIWIG
         slug:
             type: slug
             uses: title
@@ -227,20 +230,25 @@ people:
             variant: inline
             fixture_format: '{name}'
             localize: true
+            group: Général
         description:
             label: Profession
             type: text
             localize: true
+            group: Général
         image:
             type: image
             localize: true
+            group: Général
         content:
             type: article
             localize: true
+            group: WISIWIG
         slug:
             type: slug
             uses: [ name ]
             localize: true
+            group: Général
     taxonomy: groups
     icon_one: fa:user
     icon_many: fa:users
@@ -262,21 +270,25 @@ formation:
             variant: inline
             fixture_format: '{title}'
             localize: true
+            group: Général
         image:
             type: image
             localize: true
+            group: Général
         content:
             type: article
             localize: true
+            group: WISIWIG
         slug:
             type: slug
             uses: [ title ]
             localize: true
+            group: Général
         price:
             type: text
             fixture_format: "€ {randomDigitNotNull}0,-"
             localize: true
-            relations:
+            group: Général
     relations:
         people:
             multiple: true
