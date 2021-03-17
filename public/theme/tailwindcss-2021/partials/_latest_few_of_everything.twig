@@ -10,11 +10,11 @@
             <nav class="list-none mb-12">
                 <ul>
                     {% for record in records %}
-                        <li><a class="hover:underline text-melon" href="{{ record|link }}">{{ record|title|excerpt('25')}}</a></li>
+                        <li><a class="hover:underline text-pink-200" href="{{ record|link }}">{{ record|title|excerpt('25')}}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
-            <p class="w-48 py-2 mx-auto border-2 border-melon text-melon rounded-md text-center hover:shadow-xl absolute inset-x-0 bottom-0 hover:bg-melon hover:text-pink">
+            <p class="w-48 py-2 mx-auto border-2 border-pink-200 text-pink-200 rounded-md text-center hover:shadow-xl absolute inset-x-0 bottom-0 hover:bg-pink-200 hover:text-pink-800">
                 <a class="no-underline" href="{{ path('listing', {'contentTypeSlug': ct.slug}) }}">Tout voir ...</a>
             </p>
         {% else %}

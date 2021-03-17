@@ -312,23 +312,27 @@ machines:
             class: large
             variant: inline
             label: Name of this product
-            group: Block
+            group: Général
             fixture_format: '{catchPhrase}'
             localize: true
         price:
             type: text
             fixture_format: "€ {randomDigitNotNull}0,-"
             localize: true
+            group: Général
         image:
             type: image
             localize: true
+            group: Général
         teaser:
             type: redactor
             fixture_format: '{paragraph}'
             localize: true
+            group: Général
         content:
             type: article
             localize: true
+            group: Général
         features:
             type: collection
             label: Caractéristiques
