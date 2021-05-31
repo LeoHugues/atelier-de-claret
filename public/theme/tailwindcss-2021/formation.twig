@@ -21,9 +21,9 @@
     {% include 'partials/_machine_features_divider_bottom.twig' %}
 
     <div class="w-full my-16">
-        <h1 class="text-5xl text-center text-white font-serif font-bold">Les Coworkers</h1>
+        <h1 class="text-5xl text-center text-white font-serif font-bold">Les Formateurs</h1>
     </div>
-        {% setcontent peoples = 'people' where {groups: 'Coworkers'}%}
+        {% setcontent peoples = 'people' where {groups: 'Formateurs'}%}
         {% include 'partials/_carousel_people.twig' with {'peoples': peoples} %}
 
         {% include 'partials/_pages_divider_bottom.twig' %}
