@@ -5,14 +5,22 @@
 <section class="section pb-32 pt-16">
     <div class="container mx-auto flex flex-wrap max-w-5xl">
         <div class="w-full lg:w-2/3 px-5">
-           {{record.content}}
+            <img class="w-44 md:float-left mx-auto md:mx-6 m-4 rounded-full" src="{{ record.image.url }}">
+            <h1 class="text-4xl lg:text-5xl text-center md:text-left font-bold font-serif py-3">
+                {{ record.name }}
+            </h1>
+            <div class="text-arx font-bold font-serif uppercase py-4">
+                {{ record.description }}
+            </div>
+
+            {% if record.content is defined and record is not null %}
+                {{ record.content }}
+            {% endif %}
         </div>
         <div class="mx-auto mt-6 p-6 lg:mt-0 lg:p-0 lg:w-1/3">
             {% include 'partials/_social_links.twig' %}
             {% include 'partials/_aside_pined_articles.twig' %}
-            {% include 'partials/_aside_facebook_page.twig' %}
         </div>
-        
     </div>
 </section>
 
